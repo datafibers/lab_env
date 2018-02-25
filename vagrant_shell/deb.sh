@@ -157,9 +157,9 @@ JAVA_VER=$(java -version 2>&1 | grep -i version | sed 's/.*version ".*\.\(.*\)\.
 if [ "$JAVA_VER" != "8" ] && [ "$install_java" = "true" ]; then
     echo "installing java 8 ..."
     cd /opt/
-    wget --no-check-certificate --header "Cookie: oraclelicense=accept-securebackup-cookie" http://download.oracle.com/otn-pub/java/jdk/8u141-b15/336fa29ff2bb4ef291e347e091f7f4a7/jdk-8u141-linux-x64.tar.gz
-    tar -zxf jdk-8u141-linux-x64.tar.gz
-    ln -sfn /opt/jdk1.8.0_141 /opt/jdk
+    wget --no-check-certificate --header "Cookie: oraclelicense=accept-securebackup-cookie" http://download.oracle.com/otn-pub/java/jdk/8u161-b12/2f38c3b165be4555a1fa6e98c45e0808/jdk-8u161-linux-x64.tar.gz
+    tar -zxf jdk-8u161-linux-x64.tar.gz
+    ln -sfn /opt/jdk1.8.0_161 /opt/jdk
     sudo update-alternatives --install /usr/bin/java java /opt/jdk/bin/java 8000
     sudo update-alternatives --install /usr/bin/javac javac /opt/jdk/bin/javac 8000
 fi
