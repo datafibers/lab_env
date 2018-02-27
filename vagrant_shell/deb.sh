@@ -218,7 +218,6 @@ sudo apt-get -y install mysql-server
 sudo apt-get -y install libmysql-java
 
 sudo ln -sfn /usr/share/java/mysql-connector-java.jar /opt/hive/lib/mysql-connector-java.jar
-sudo ln -sfn /usr/share/java/mysql-connector-java.jar /opt/confluent/share/java/kafka-connect-jdbc/mysql-connector-java.jar
 
 # Configure Hive Metastore
 mysql -u root --password="mypassword" -f \
