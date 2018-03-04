@@ -229,7 +229,7 @@ if [ -h ${DF_APP_DEP}/hbase ]; then
 	sid=$(getSID ${HBASE_HMASTER_DAEMON_NAME})
 	sid2=$(getSID ${HBASE_RSERVER_DAEMON_NAME})
 	if [ -z "${sid}" ] && [ -z "${sid2}" ]; then
-		start-hbase.sh 1 > /dev/null 2 > /dev/null
+		start-hbase.sh
 		echo "[INFO] Started [Apache HBase]"
 		sleep 5
 	else
@@ -242,7 +242,7 @@ fi
 
 stop_hbase () {
 if [ -h ${DF_APP_DEP}/hbase ]; then
-	stop-hbase.sh 1 > /dev/null 2 > /dev/null
+	stop-hbase.sh
 	echo "[INFO] Shutdown [Apache HBase]"
 	sleep 3
 else
