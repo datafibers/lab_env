@@ -217,7 +217,7 @@ if [ "$install_livy" = true ]; then
 fi
 
 # if [ "$install_phoenix" = true ] && [ "$install_hbase" = true ]; then
-#  cp /opt/phoenix/*.jar /opt/hbase/lib/
+# cp /opt/phoenix/phoenix-*-server.jar /opt/hbase/lib/
 # fi
 
 # Install MySQL Metastore for Hive - do this after creating profiles in order to use hive schematool
