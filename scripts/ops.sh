@@ -226,8 +226,9 @@ fi
 
 start_hbase () {
 if [ -h ${DF_APP_DEP}/hbase ]; then
-	sid=$(getSID ${HBASE_DAEMON_NAME})
-	if [ -z "${sid}" ] ; then
+	sid=$(getSID ${HBASE_HMASTER_DAEMON_NAME})
+	sid2=$(getSID ${HBASE_RSERVER_DAEMON_NAME})
+	if [ -z "${sid}" ] && [ -z "${sid2}" ]; then
 		start-hbase.sh 1 > /dev/null 2 > /dev/null
 		echo "[INFO] Started [Apache HBase]"
 		sleep 5
