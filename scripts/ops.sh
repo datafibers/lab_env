@@ -63,7 +63,9 @@ ZOO_KEEPER_DAEMON_NAME=QuorumPeerMain
 SCHEMA_REGISTRY_DAEMON_NAME=schemaregistrymain
 FLINK_JM_DAEMON_NAME=JobManager
 FLINK_TM_DAEMON_NAME=TaskManager
-ZEPPELIN_DAEMON_NAME=Zeppelin
+ZEPPELIN_DAEMON_NAME=ZeppelinServer
+HBASE_HMASTER_DAEMON_NAME=HMaster
+HBASE_RSERVER_DAEMON_NAME=HRegionServer
 SPARK_JM_DAEMON_NAME=spark.deploy.master
 SPARK_TM_DAEMON_NAME=spark.deploy.worker
 HADOOP_NN_DAEMON_NAME=NameNode
@@ -393,15 +395,17 @@ start_all_service
 }
 
 status_all () {
-    status ${ZOO_KEEPER_DAEMON_NAME} ZooKeeper yes
-    status ${KAFKA_DAEMON_NAME} Kafka yes
-    status ${KAFKA_CONNECT_DAEMON_NAME} Kafka_Connect yes
-    status ${SCHEMA_REGISTRY_DAEMON_NAME} Schema_Registry yes
+    status ${ZOO_KEEPER_DAEMON_NAME} ZooKeeper
+    status ${KAFKA_DAEMON_NAME} Kafka
+    status ${KAFKA_CONNECT_DAEMON_NAME} Kafka_Connect
+    status ${SCHEMA_REGISTRY_DAEMON_NAME} Schema_Registry
     status ${FLINK_JM_DAEMON_NAME} Flink_JobManager
     status ${FLINK_TM_DAEMON_NAME} Flink_TaskManager
     status ${SPARK_JM_DAEMON_NAME} Spark_Master
     status ${SPARK_TM_DAEMON_NAME} Spark_Worker
     status ${ZEPPELIN_DAEMON_NAME} Zeppelin_Server
+    status ${HBASE_HMASTER_DAEMON_NAME} HBase_Master
+    status ${HBASE_RSERVER_DAEMON_NAME} HBase_Region
     status ${HADOOP_NN_DAEMON_NAME} HadoopNN
     status ${HADOOP_DN_DAEMON_NAME} HadoopDN
     status ${HIVE_SERVER_DAEMON_NAME} HiveServer2
