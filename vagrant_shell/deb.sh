@@ -12,10 +12,10 @@ install_mongo=true
 install_spark=true
 install_livy=false
 install_grafana=false
-
 install_elastic=false
-install_zeppelin=false
+install_zeppelin=true
 install_hbase=true
+install_phoenix=true
 
 #software repository links
 file_name_hadoop=hadoop-2.6.0.tar.gz
@@ -44,6 +44,9 @@ dl_link_spark=https://archive.apache.org/dist/spark/spark-2.2.0/spark-2.2.0-bin-
 
 file_name_hbase=hbase-1.3.0.tar.gz
 dl_link_hbase=https://archive.apache.org/dist/hbase/1.3.0/hbase-1.3.0-bin.tar.gz
+
+file_name_phoenix=apache-phoenix-4.13.1-HBase-1.3-bin.tar.gz
+dl_link_phoenix=http://archive.apache.org/dist/phoenix/apache-phoenix-4.13.1-HBase-1.3/bin/apache-phoenix-4.13.1-HBase-1.3-bin.tar.gz
 
 file_name_livy=livy-0.4.0.tar.gz
 dl_link_livy=https://github.com/datafibers-community/df_demo/releases/download/livy/livy-0.4.0-incubating-bin.tar.gz
@@ -134,6 +137,9 @@ soft_install $install_spark spark $dl_link_spark $file_name_spark
 # Install HBase
 soft_install $install_hbase hbase $dl_link_hbase $file_name_hbase
 
+# Install Phoenix
+soft_install $install_phoenix phoenix $dl_link_phoenix $file_name_phoenix
+
 # Install Livy
 soft_install $install_livy livy $dl_link_livy $file_name_livy
 
@@ -209,6 +215,10 @@ fi
 if [ "$install_livy" = true ]; then
   cp /mnt/etc/livy/* /opt/livy/conf/
 fi
+
+# if [ "$install_phoenix" = true ] && [ "$install_hbase" = true ]; then
+#  cp /opt/phoenix/*.jar /opt/hbase/lib/
+# fi
 
 # Install MySQL Metastore for Hive - do this after creating profiles in order to use hive schematool
 sudo apt-get -y update
