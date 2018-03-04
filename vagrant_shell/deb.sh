@@ -187,6 +187,10 @@ chown -R vagrant:vagrant /mnt/etc
 mkdir -p /mnt/logs
 chown -R vagrant:vagrant /mnt/logs
 
+chown -R vagrant:vagrant /vagrant/scripts/*
+chmod +x /vagrant/scripts/*
+cp -r /vagrant/scripts/* /home/vagrant/
+
 mkdir -p /mnt/dfs/name
 mkdir -p /mnt/dfs/data
 
