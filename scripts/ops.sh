@@ -50,13 +50,6 @@ DF_APP_DEP=/opt
 DF_APP_CONFIG=${DF_APP_MNT}/etc
 DF_APP_LOG=${DF_APP_MNT}/logs
 
-DF_KAFKA_CONNECT_REST_PORT=$(grep rest.port $DF_CONFIG/connect-avro-distributed.properties | sed "s/rest.port=//g")
-if [ -z ${DF_KAFKA_CONNECT_REST_PORT} ]; then
-	DF_KAFKA_CONNECT_REST_PORT=8083
-fi
-
-DF_KAFKA_CONNECT_URI="localhost:"$DF_KAFKA_CONNECT_REST_PORT
-
 KAFKA_DAEMON_NAME=SupportedKafka
 KAFKA_CONNECT_DAEMON_NAME=connectdistributed
 ZOO_KEEPER_DAEMON_NAME=QuorumPeerMain
