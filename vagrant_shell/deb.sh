@@ -33,8 +33,8 @@ dl_link_flink=http://www-us.apache.org/dist/flink/flink-1.3.2/flink-1.3.2-bin-ha
 file_name_elastic=elastic-2.3.4.tar.gz
 dl_link_elastic=https://download.elastic.co/elasticsearch/release/org/elasticsearch/distribution/tar/elasticsearch/2.3.4/elasticsearch-2.3.4.tar.gz
 
-file_name_zeppelin=zeppelin-0.7.2.tgz
-dl_link_zeppelin=https://archive.apache.org/dist/zeppelin/zeppelin-0.7.2/zeppelin-0.7.2-bin-all.tgz
+file_name_zeppelin=zeppelin-0.7.3.tgz
+dl_link_zeppelin=https://archive.apache.org/dist/zeppelin/zeppelin-0.7.3/zeppelin-0.7.3-bin-all.tgz
 
 file_name_grafana=grafana-4.6.2.tar.gz
 dl_link_grafana=https://s3-us-west-2.amazonaws.com/grafana-releases/release/grafana-4.6.2.linux-x64.tar.gz
