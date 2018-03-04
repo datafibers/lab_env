@@ -13,7 +13,7 @@ install_spark=false
 install_livy=false
 install_grafana=false
 install_elastic=false
-install_zeppelin=false
+install_zeppelin=true
 install_hbase=true
 install_phoenix=true
 
