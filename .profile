@@ -21,6 +21,7 @@ if [ -d "$HOME/bin" ] ; then
     PATH="$HOME/bin:$PATH"
 fi
 
+export LAB_HOME="/home/vagrant"
 export JAVA_HOME="/opt/jdk"
 
 export HADOOP_USER_CLASSPATH_FIRST=true
@@ -43,3 +44,6 @@ PATH="$SPARK_HOME/bin:$PATH"
 PATH="$SPARK_HOME/sbin:$PATH"
 PATH="$HBASE_HOME/bin:$PATH"
 PATH="$JAVA_HOME/bin:$PATH"
+PATH="$LAB_HOME:$PATH"
+
+alias ops='ops.sh'
