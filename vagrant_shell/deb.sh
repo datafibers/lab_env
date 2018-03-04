@@ -39,8 +39,8 @@ dl_link_zeppelin=https://archive.apache.org/dist/zeppelin/zeppelin-0.7.2/zeppeli
 file_name_grafana=grafana-4.6.2.tar.gz
 dl_link_grafana=https://s3-us-west-2.amazonaws.com/grafana-releases/release/grafana-4.6.2.linux-x64.tar.gz
 
-file_name_spark=spark-2.2.0.tgz
-dl_link_spark=https://archive.apache.org/dist/spark/spark-2.2.0/spark-2.2.0-bin-hadoop2.6.tgz
+file_name_spark=spark-2.3.0.tgz
+dl_link_spark=https://archive.apache.org/dist/spark/spark-2.3.0/spark-2.3.0-bin-hadoop2.6.tgz
 
 file_name_hbase=hbase-1.3.0.tar.gz
 dl_link_hbase=https://archive.apache.org/dist/hbase/1.3.0/hbase-1.3.0-bin.tar.gz
