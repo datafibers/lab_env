@@ -246,8 +246,8 @@ mysql -u root --password="mypassword" \
 schematool -dbType mysql -initSchema
 
 echo "***************************************************************************************"
-echo "*Lab Virtual Machine Setup Completed.                                                 *"
-echo "*SSH address:127.0.0.1:2222.                                                          *"
-echo "*SSH username/password:vagrant/vagrant                                                *"
-echo "*Command: ssh vagrant@localhost -p 2222                                               *"
+echo "* Lab Virtual Machine Setup Completed.                                                 *"
+echo "* SSH address:127.0.0.1:2222.                                                          *"
+echo "* SSH username/password:vagrant/vagrant                                                *"
+echo "* Command: ssh vagrant@localhost -p 2222                                               *"
 echo "***************************************************************************************"
