@@ -66,7 +66,7 @@ HADOOP_DN_DAEMON_NAME=DataNode
 HIVE_SERVER_DAEMON_NAME=hiveserver2
 HIVE_METADATA_NAME=HiveMetaStore
 
-echo "****************Starting DF Operations****************"
+echo "****************Starting Operations****************"
 
 format_all () {
 rm -rf ${DF_APP_MNT}/kafka-logs/
@@ -82,15 +82,6 @@ echo "Formatted hadoop"
 
 start_confluent () {
 if [ -h ${DF_APP_DEP}/confluent ]; then
-	sid=$(getSID ${ZOO_KEEPER_DAEMON_NAME})
-	if [ -z "${sid}" ]; then
-		zookeeper-server-start ${DF_APP_CONFIG}/zookeeper.properties 1> ${DF_APP_LOG}/zk.log 2>${DF_APP_LOG}/zk.log &
-		sleep 3
-	else
-		echo "[WARN] Found ZooKeeper daemon running. Please [stop] or [restart] it."
-	fi
-	echo "[INFO] Started [Apache Zookeeper]"
-
 	sid=$(getSID ${KAFKA_DAEMON_NAME})
 	if [ -z "${sid}" ]; then
 		kafka-server-start ${DF_APP_CONFIG}/server.properties 1> ${DF_APP_LOG}/kafka.log 2> ${DF_APP_LOG}/kafka.log &
@@ -135,8 +126,6 @@ if [ -h ${DF_APP_DEP}/confluent ]; then
     	kill -9 ${sid}
 		echo "[WARN] Kafka PID is killed after 15 sec. time out."
     fi
-	echo "[INFO] Shutdown [Apache Zookeeper]"
-	zookeeper-server-stop ${DF_APP_CONFIG}/zookeeper.properties 1> ${DF_APP_LOG}/zk.log 2> ${DF_APP_LOG}/zk.log &
 	echo "[INFO] Shutdown [Apache Kafka Connect]"
     sid=$(getSID ${KAFKA_CONNECT_DAEMON_NAME})
 	if [ ! -z "${sid}" ]; then
@@ -221,6 +210,31 @@ if [ -h ${DF_APP_DEP}/zeppelin ]; then
 	sleep 3
 else
 	echo "[WARN] Apache Zeppelin Not Found"
+fi
+}
+
+start_zookeeper () {
+if [ -h ${DF_APP_DEP}/confluent ]; then
+	sid=$(getSID ${ZOO_KEEPER_DAEMON_NAME})
+	if [ -z "${sid}" ] ; then
+	    zookeeper-server-start ${DF_APP_CONFIG}/zookeeper.properties 1> ${DF_APP_LOG}/zk.log 2>${DF_APP_LOG}/zk.log &
+		echo "[INFO] Started [Apache Zookeeper]"
+		sleep 5
+	else
+		echo "[WARN] Found Zookeeper daemon running. Please [stop] or [restart]."
+	fi
+else
+	echo "[WARN] Apache Zookeeper Not Found"
+fi
+}
+
+stop_zookeeper () {
+if [ -h ${DF_APP_DEP}/confluent ]; then
+	zookeeper-server-stop ${DF_APP_CONFIG}/zookeeper.properties 1> ${DF_APP_LOG}/zk.log 2> ${DF_APP_LOG}/zk.log &
+	echo "[INFO] Shutdown [Apache Zookeeper]"
+	sleep 3
+else
+	echo "[WARN] Apache Zookeeper Not Found"
 fi
 }
 
@@ -311,6 +325,7 @@ fi
 start_all_service () {
 if [ "${service}" = "kafka" ]; then
 	start_hadoop
+	start_zookeeper
 	start_confluent
 	start_zeppelin
 elif [ "${service}" = "default" ]; then
@@ -326,6 +341,7 @@ elif [ "${service}" = "flink" ]; then
 	start_zeppelin	
 elif [ "${service}" = "hbase" ]; then
 	start_hadoop
+	start_zookeeper
 	start_hbase
 	start_zeppelin	
 elif [ "${service:0:4}" = "mask" ]; then
@@ -346,12 +362,15 @@ elif [ "${service:0:4}" = "mask" ]; then
 	if [ "${service:8:1}" == "1" ]; then
 	    start_hbase
 	fi
+	if [ "${service:9:1}" == "1" ]; then
+	    start_zookeeper
+	fi
 
 	if [ "${service}" = "mask" ]; then
 	    echo "[ERROR] No proper mask is specified."
 	    echo "[INFO] Labops start masking setting uses 1 to enable and 0 to disable the service to start"
-	    echo "[INFO] 5 bit masking represents service like hadoop (hive) and zeppelin, kafka (schema registry), flink, spark, hbase"
-	    echo "[INFO] For example, 'dfops start mask10010' only start hadoop (hive) and spark service"
+	    echo "[INFO] 6 bit masking represents service like hadoop (hive) and zeppelin, kafka (schema registry), flink, spark, hbase"
+	    echo "[INFO] For example, 'dfops start mask100100' only start hadoop (hive) and spark service"
 	fi
 else
 	echo "[ERROR] No service will start because of wrong command."
@@ -361,6 +380,7 @@ fi
 stop_all_service () {
 if [ "${service}" = "kafka" ]; then
 	stop_confluent
+	stop_zookeeper
 	stop_hadoop
 	stop_zeppelin
 elif [ "${service}" = "default" ]; then
@@ -371,7 +391,8 @@ elif [ "${service}" = "spark" ]; then
 	stop_hadoop
 	stop_zeppelin
 elif [ "${service}" = "hbase" ]; then
-	stop_hbase	
+	stop_hbase
+	stop_zookeeper
 	stop_hadoop
 	stop_zeppelin	
 elif [ "${service}" = "flink" ]; then

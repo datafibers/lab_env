@@ -6,10 +6,10 @@ install_java=true
 
 install_hadoop=true
 install_hive=true
-install_confluent=false
-install_flink=false
+install_confluent=true
+install_flink=true
 install_mongo=true
-install_spark=false
+install_spark=true
 install_livy=false
 install_grafana=false
 install_elastic=false
@@ -18,6 +18,8 @@ install_hbase=true
 install_phoenix=true
 
 #software repository links
+dl_link_java=http://download.oracle.com/otn-pub/java/jdk/8u161-b12/2f38c3b165be4555a1fa6e98c45e0808/jdk-8u161-linux-x64.tar.gz
+
 file_name_hadoop=hadoop-2.6.0.tar.gz
 dl_link_hadoop=https://archive.apache.org/dist/hadoop/common/hadoop-2.6.0/hadoop-2.6.0.tar.gz
 
@@ -163,7 +165,7 @@ JAVA_VER=$(java -version 2>&1 | grep -i version | sed 's/.*version ".*\.\(.*\)\.
 if [ "$JAVA_VER" != "8" ] && [ "$install_java" = "true" ]; then
     echo "installing java 8 ..."
     cd /opt/
-    wget --no-check-certificate --header "Cookie: oraclelicense=accept-securebackup-cookie" http://download.oracle.com/otn-pub/java/jdk/8u161-b12/2f38c3b165be4555a1fa6e98c45e0808/jdk-8u161-linux-x64.tar.gz
+    wget --no-check-certificate --header "Cookie: oraclelicense=accept-securebackup-cookie" $dl_link_java
     tar -zxf jdk-8u161-linux-x64.tar.gz
     ln -sfn /opt/jdk1.8.0_161 /opt/jdk
     sudo update-alternatives --install /usr/bin/java java /opt/jdk/bin/java 8000
@@ -222,6 +224,7 @@ fi
 
 if [ "$install_phoenix" = true ] && [ "$install_hbase" = true ]; then
   cp /opt/phoenix/phoenix-*-server.jar /opt/hbase/lib/
+  cp /mnt/etc/hbase/* /opt/hbase/conf/
 fi
 
 # Install MySQL Metastore for Hive - do this after creating profiles in order to use hive schematool
