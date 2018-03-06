@@ -227,6 +227,11 @@ if [ "$install_phoenix" = true ] && [ "$install_hbase" = true ]; then
   cp /mnt/etc/hbase/* /opt/hbase/conf/
 fi
 
+if [ "$install_zeppelin" = true ]; then
+  cp /opt/hive/lib/hive-jdbc-*-standalone.jar /opt/zeppelin/interpreter/jdbc/
+  cp /opt/hadoop/share/hadoop/common/hadoop-common-*.jar /opt/zeppelin/interpreter/jdbc/
+fi
+
 # Install MySQL Metastore for Hive - do this after creating profiles in order to use hive schematool
 sudo apt-get -y update
 sudo debconf-set-selections <<< 'mysql-server mysql-server/root_password password mypassword'
