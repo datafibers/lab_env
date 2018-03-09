@@ -16,6 +16,7 @@ usage () {
     printf "\n"
         printf "[service]\n"
         printf "%-25s: %-50s\n" "default" "Run hadoop/hive, zeppelin. This is the default option."
+        printf "%-25s: %-50s\n" "all" "Run hadoop/hive, zeppelin, spark, flink, hbase, kafka."	
         printf "%-25s: %-50s\n" "spark" "Run hadoop/hive, zeppelin, spark"
         printf "%-25s: %-50s\n" "flink" "Run hadoop/hive, zeppelin, flink"
         printf "%-25s: %-50s\n" "hbase" "Run hadoop/hive, zeppelin, hbase"
@@ -330,6 +331,14 @@ if [ "${service}" = "kafka" ]; then
 	start_zeppelin
 elif [ "${service}" = "default" ]; then
 	start_hadoop
+	start_zookeeper
+	start_confluent
+	start_hbase
+	start_flink
+	start_spark
+	start_zeppelin
+elif [ "${service}" = "default" ]; then
+	start_hadoop
 	start_zeppelin
 elif [ "${service}" = "spark" ]; then
 	start_hadoop
@@ -386,6 +395,14 @@ if [ "${service}" = "kafka" ]; then
 elif [ "${service}" = "default" ]; then
 	stop_hadoop
 	stop_zeppelin
+elif [ "${service}" = "all" ]; then
+        stop_spark
+	stop_flink
+	stop_hbase
+	stop_zookeeper
+	stop_confluent
+	stop_hadoop
+	stop_zeppelin	
 elif [ "${service}" = "spark" ]; then
 	stop_spark	
 	stop_hadoop
