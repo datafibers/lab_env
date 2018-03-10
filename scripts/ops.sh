@@ -329,7 +329,7 @@ if [ "${service}" = "kafka" ]; then
 	start_zookeeper
 	start_confluent
 	start_zeppelin
-elif [ "${service}" = "default" ]; then
+elif [ "${service}" = "all" ]; then
 	start_hadoop
 	start_zookeeper
 	start_confluent
