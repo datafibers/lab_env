@@ -20,8 +20,8 @@ install_phoenix=true
 #software repository links
 dl_link_java=http://download.oracle.com/otn-pub/java/jdk/8u161-b12/2f38c3b165be4555a1fa6e98c45e0808/jdk-8u161-linux-x64.tar.gz
 
-file_name_hadoop=hadoop-2.6.0.tar.gz
-dl_link_hadoop=https://archive.apache.org/dist/hadoop/common/hadoop-2.6.0/hadoop-2.6.0.tar.gz
+file_name_hadoop=hadoop-2.7.3.tar.gz
+dl_link_hadoop=https://archive.apache.org/dist/hadoop/common/hadoop-2.7.3/hadoop-2.7.3.tar.gz
 
 file_name_hive=hive-1.2.1.tar.gz
 dl_link_hive=https://archive.apache.org/dist/hive/hive-1.2.1/apache-hive-1.2.1-bin.tar.gz
@@ -41,14 +41,14 @@ dl_link_zeppelin=https://archive.apache.org/dist/zeppelin/zeppelin-0.7.3/zeppeli
 file_name_grafana=grafana-4.6.2.tar.gz
 dl_link_grafana=https://s3-us-west-2.amazonaws.com/grafana-releases/release/grafana-4.6.2.linux-x64.tar.gz
 
-file_name_spark=spark-2.3.0.tgz
-dl_link_spark=https://archive.apache.org/dist/spark/spark-2.3.0/spark-2.3.0-bin-hadoop2.6.tgz
+file_name_spark=spark-2.2.0.tgz
+dl_link_spark=https://archive.apache.org/dist/spark/spark-2.2.0/spark-2.2.0-bin-hadoop2.7.tgz
 
-file_name_hbase=hbase-1.3.0.tar.gz
-dl_link_hbase=https://archive.apache.org/dist/hbase/1.3.0/hbase-1.3.0-bin.tar.gz
+file_name_hbase=hbase-1.1.2.tar.gz
+dl_link_hbase=https://archive.apache.org/dist/hbase/1.1.2/hbase-1.1.2-bin.tar.gz
 
-file_name_phoenix=apache-phoenix-4.13.1-HBase-1.3-bin.tar.gz
-dl_link_phoenix=http://archive.apache.org/dist/phoenix/apache-phoenix-4.13.1-HBase-1.3/bin/apache-phoenix-4.13.1-HBase-1.3-bin.tar.gz
+file_name_phoenix=phoenix-4.13.1.tar.gz
+dl_link_phoenix=http://archive.apache.org/dist/phoenix/apache-phoenix-4.13.1-HBase-1.1/bin/apache-phoenix-4.13.1-HBase-1.1-bin.tar.gz
 
 file_name_livy=livy-0.4.0.tar.gz
 dl_link_livy=https://github.com/datafibers-community/df_demo/releases/download/livy/livy-0.4.0-incubating-bin.tar.gz

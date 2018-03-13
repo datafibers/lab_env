@@ -270,8 +270,7 @@ if [ -h ${DF_APP_DEP}/hadoop ]; then
 	sid=$(getSID ${HADOOP_NN_DAEMON_NAME})
 	sid2=$(getSID ${HADOOP_DN_DAEMON_NAME})
 	if [ -z "${sid}" ] && [ -z "${sid2}" ]; then
-		hadoop-daemon.sh start namenode
-		hadoop-daemon.sh start datanode
+		/opt/hadoop/start-all.sh
 		echo "[INFO] Started [Apache Hadoop]"
 		sleep 3
 	else
@@ -293,8 +292,7 @@ fi
 
 stop_hadoop () {
 echo "[INFO] Shutdown [Apache Hadoop]"
-hadoop-daemon.sh stop datanode
-hadoop-daemon.sh stop namenode
+/opt/hadoop/stop-all.sh
 sid=$(getSID hivemetastore)
 kill -9 ${sid} 2> /dev/null
 echo "[INFO] Shutdown [Apache Hive MetaStore]"
