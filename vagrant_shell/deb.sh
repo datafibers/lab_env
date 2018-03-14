@@ -253,6 +253,11 @@ mysql -u root --password="mypassword" \
 
 schematool -dbType mysql -initSchema
 
+echo "Creating keys for passwordless ssh"
+echo -e  'y' | ssh-keygen -t rsa -f ~/.ssh/id_rsa -q -P ''
+cat ~/.ssh/id_rsa.pub >> ~/.ssh/authorized_keys
+chmod 600 ~/.ssh/authorized_keys
+
 echo "***************************************************************************************"
 echo "* Lab Virtual Machine Setup Completed.                                                 *"
 echo "* SSH address:127.0.0.1:2222.                                                          *"
