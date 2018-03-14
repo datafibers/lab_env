@@ -193,7 +193,7 @@ start_zeppelin () {
 if [ -h ${DF_APP_DEP}/zeppelin ]; then
 	sid=$(getSID ${ZEPPELIN_DAEMON_NAME})
 	if [ -z "${sid}" ] ; then
-		zeppelin-daemon.sh start
+		zeppelin-daemon.sh start 1 > /dev/null 2 > /dev/null
 		echo "[INFO] Started [Apache Zeppelin]"
 		sleep 5
 	else
@@ -206,7 +206,7 @@ fi
 
 stop_zeppelin () {
 if [ -h ${DF_APP_DEP}/zeppelin ]; then
-	zeppelin-daemon.sh stop
+	zeppelin-daemon.sh stop 1 > /dev/null 2 > /dev/null
 	echo "[INFO] Shutdown [Apache Zeppelin]"
 	sleep 3
 else
@@ -270,7 +270,7 @@ if [ -h ${DF_APP_DEP}/hadoop ]; then
 	sid=$(getSID ${HADOOP_NN_DAEMON_NAME})
 	sid2=$(getSID ${HADOOP_DN_DAEMON_NAME})
 	if [ -z "${sid}" ] && [ -z "${sid2}" ]; then
-		/opt/hadoop/start-all.sh
+		/opt/hadoop/sbin/start-all.sh
 		echo "[INFO] Started [Apache Hadoop]"
 		sleep 3
 	else
@@ -292,7 +292,7 @@ fi
 
 stop_hadoop () {
 echo "[INFO] Shutdown [Apache Hadoop]"
-/opt/hadoop/stop-all.sh
+/opt/hadoop/sbin/stop-all.sh
 sid=$(getSID hivemetastore)
 kill -9 ${sid} 2> /dev/null
 echo "[INFO] Shutdown [Apache Hive MetaStore]"
