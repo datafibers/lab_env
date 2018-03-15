@@ -7,7 +7,7 @@ This distribution is packaged according to the [HDP 2.6.4](https://docs.hortonwo
 * confluent-3.3.0/
 * flink-1.3.2/
 * hadoop-2.7.3/
-* hbase-1.1.2/
+* hbase-1.3.2/
 * hive-1.2.1/
 * spark-2.2.0/
 * zeppelin-0.7.3/
