@@ -64,6 +64,8 @@ SPARK_JM_DAEMON_NAME=spark.deploy.master
 SPARK_TM_DAEMON_NAME=spark.deploy.worker
 HADOOP_NN_DAEMON_NAME=NameNode
 HADOOP_DN_DAEMON_NAME=DataNode
+YARN_RM_DAEMON_NAME=ResourceManager
+YARN_NM_DAEMON_NAME=NodeManager
 HIVE_SERVER_DAEMON_NAME=hiveserver2
 HIVE_METADATA_NAME=HiveMetaStore
 
@@ -193,7 +195,7 @@ start_zeppelin () {
 if [ -h ${DF_APP_DEP}/zeppelin ]; then
 	sid=$(getSID ${ZEPPELIN_DAEMON_NAME})
 	if [ -z "${sid}" ] ; then
-		zeppelin-daemon.sh start
+		zeppelin-daemon.sh start 1 > /dev/null 2 > /dev/null
 		echo "[INFO] Started [Apache Zeppelin]"
 		sleep 5
 	else
@@ -206,7 +208,7 @@ fi
 
 stop_zeppelin () {
 if [ -h ${DF_APP_DEP}/zeppelin ]; then
-	zeppelin-daemon.sh stop
+	zeppelin-daemon.sh stop 1 > /dev/null 2 > /dev/null
 	echo "[INFO] Shutdown [Apache Zeppelin]"
 	sleep 3
 else
@@ -270,8 +272,8 @@ if [ -h ${DF_APP_DEP}/hadoop ]; then
 	sid=$(getSID ${HADOOP_NN_DAEMON_NAME})
 	sid2=$(getSID ${HADOOP_DN_DAEMON_NAME})
 	if [ -z "${sid}" ] && [ -z "${sid2}" ]; then
-		hadoop-daemon.sh start namenode
-		hadoop-daemon.sh start datanode
+		start-dfs.sh
+		start-yarn.sh
 		echo "[INFO] Started [Apache Hadoop]"
 		sleep 3
 	else
@@ -293,8 +295,8 @@ fi
 
 stop_hadoop () {
 echo "[INFO] Shutdown [Apache Hadoop]"
-hadoop-daemon.sh stop datanode
-hadoop-daemon.sh stop namenode
+stop-yarn.sh
+stop-dfs.sh
 sid=$(getSID hivemetastore)
 kill -9 ${sid} 2> /dev/null
 echo "[INFO] Shutdown [Apache Hive MetaStore]"
@@ -431,15 +433,17 @@ status_all () {
     status ${KAFKA_DAEMON_NAME} Kafka
     status ${KAFKA_CONNECT_DAEMON_NAME} Kafka_Connect
     status ${SCHEMA_REGISTRY_DAEMON_NAME} Schema_Registry
-    status ${FLINK_JM_DAEMON_NAME} Flink_JobManager
-    status ${FLINK_TM_DAEMON_NAME} Flink_TaskManager
+    status ${FLINK_JM_DAEMON_NAME} Flink_JobMgr
+    status ${FLINK_TM_DAEMON_NAME} Flink_TaskMgr
     status ${SPARK_JM_DAEMON_NAME} Spark_Master
     status ${SPARK_TM_DAEMON_NAME} Spark_Worker
     status ${ZEPPELIN_DAEMON_NAME} Zeppelin_Server
     status ${HBASE_HMASTER_DAEMON_NAME} HBase_Master
     status ${HBASE_RSERVER_DAEMON_NAME} HBase_Region
-    status ${HADOOP_NN_DAEMON_NAME} HadoopNN
-    status ${HADOOP_DN_DAEMON_NAME} HadoopDN
+    status ${HADOOP_NN_DAEMON_NAME} Hadoop_NameNode
+    status ${HADOOP_DN_DAEMON_NAME} Hadoop_DataNode
+    status ${YARN_RM_DAEMON_NAME} Yarn_ResourceMgr
+    status ${YARN_NM_DAEMON_NAME} Yarn_NodeMgr
     status ${HIVE_SERVER_DAEMON_NAME} HiveServer2
     status ${HIVE_METADATA_NAME} HiveMetaStore
 }
