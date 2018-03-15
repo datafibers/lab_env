@@ -64,6 +64,8 @@ SPARK_JM_DAEMON_NAME=spark.deploy.master
 SPARK_TM_DAEMON_NAME=spark.deploy.worker
 HADOOP_NN_DAEMON_NAME=NameNode
 HADOOP_DN_DAEMON_NAME=DataNode
+YARN_RM_DAEMON_NAME=ResourceManager
+YARN_NM_DAEMON_NAME=NodeManager
 HIVE_SERVER_DAEMON_NAME=hiveserver2
 HIVE_METADATA_NAME=HiveMetaStore
 
@@ -438,8 +440,10 @@ status_all () {
     status ${ZEPPELIN_DAEMON_NAME} Zeppelin_Server
     status ${HBASE_HMASTER_DAEMON_NAME} HBase_Master
     status ${HBASE_RSERVER_DAEMON_NAME} HBase_Region
-    status ${HADOOP_NN_DAEMON_NAME} HadoopNN
-    status ${HADOOP_DN_DAEMON_NAME} HadoopDN
+    status ${HADOOP_NN_DAEMON_NAME} Hadoop_NameNode
+    status ${HADOOP_DN_DAEMON_NAME} Hadoop_DataNode
+    status ${YARN_RM_DAEMON_NAME} Yarn_ResourceManager
+    status ${YARN_NM_DAEMON_NAME} Yarn_NodeManager
     status ${HIVE_SERVER_DAEMON_NAME} HiveServer2
     status ${HIVE_METADATA_NAME} HiveMetaStore
 }
