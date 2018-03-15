@@ -13,8 +13,8 @@ This distribution is packaged according to the [HDP 2.6.4](https://docs.hortonwo
 * zeppelin-0.7.3/
 
 ## Quick Setup
-1. Install Oracle VirtualBox
-2. Install Vagrant
+1. Install [Oracle VirtualBox](https://www.virtualbox.org/wiki/Downloads)
+2. Install [Vagrant](https://www.vagrantup.com/downloads.html)
 3. Go to a proper folder and git clone this repository ```git clone https://github.com/datafibers/lab_env.git```
 4. To install ```cd lab_env && vagrant up```
 5. To update ```cd lan_env && git pull && vagrant provision```
