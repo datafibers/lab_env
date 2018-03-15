@@ -433,8 +433,8 @@ status_all () {
     status ${KAFKA_DAEMON_NAME} Kafka
     status ${KAFKA_CONNECT_DAEMON_NAME} Kafka_Connect
     status ${SCHEMA_REGISTRY_DAEMON_NAME} Schema_Registry
-    status ${FLINK_JM_DAEMON_NAME} Flink_JobManager
-    status ${FLINK_TM_DAEMON_NAME} Flink_TaskManager
+    status ${FLINK_JM_DAEMON_NAME} Flink_JobMgr
+    status ${FLINK_TM_DAEMON_NAME} Flink_TaskMgr
     status ${SPARK_JM_DAEMON_NAME} Spark_Master
     status ${SPARK_TM_DAEMON_NAME} Spark_Worker
     status ${ZEPPELIN_DAEMON_NAME} Zeppelin_Server
@@ -442,8 +442,8 @@ status_all () {
     status ${HBASE_RSERVER_DAEMON_NAME} HBase_Region
     status ${HADOOP_NN_DAEMON_NAME} Hadoop_NameNode
     status ${HADOOP_DN_DAEMON_NAME} Hadoop_DataNode
-    status ${YARN_RM_DAEMON_NAME} Yarn_ResourceManager
-    status ${YARN_NM_DAEMON_NAME} Yarn_NodeManager
+    status ${YARN_RM_DAEMON_NAME} Yarn_ResourceMgr
+    status ${YARN_NM_DAEMON_NAME} Yarn_NodeMgr
     status ${HIVE_SERVER_DAEMON_NAME} HiveServer2
     status ${HIVE_METADATA_NAME} HiveMetaStore
 }
