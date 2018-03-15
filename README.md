@@ -12,6 +12,13 @@ This distribution is packaged according to the [HDP 2.6.4](https://docs.hortonwo
 * spark-2.2.0/
 * zeppelin-0.7.3/
 
+## Quick Setup
+1. Install Oracle VirtualBox
+2. Install Vagrant
+3. Go to a proper folder and git clone this repository ```git clone https://github.com/datafibers/lab_env.git```
+4. To install ```cd lab_env && vagrant up```
+5. To update ```cd lan_env && git pull && vagrant provision```
+
 ## Operation Command (in VM)
 * Enter ```ops``` to get full command help
 * Enter ```ops start all``` to start all service
@@ -37,7 +44,7 @@ vagrant@vagrant:~$ ops status
 [INFO]   [HiveServer2]        is running at [2953]
 [INFO]   [HiveMetaStore]      is running at [2952]
 ```
-## VM Command Help
+## Vagrant Command Reference (outside VM)
 * Start the vm/image install
 ```
 vagrant up
