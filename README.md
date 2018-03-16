@@ -19,7 +19,11 @@ This distribution is packaged according to the [HDP 2.6.4](https://docs.hortonwo
 4. To install ```cd lab_env && vagrant up```
 5. To update ```cd lan_env && git pull && vagrant provision```
 
-## Operation Command (in VM)
+## Know Issues
+* When vagrant up is hanging there (connection timeout) for the first time installation. Check if you running VM has network connection.
+* After installed, you'll need to run ```ops format``` to format hadoop
+
+## Operation Command Reference (in VM)
 * Enter ```ops``` to get full command help
 * Enter ```ops start all``` to start all service
 * Enter ```ops status``` to check status as follows
