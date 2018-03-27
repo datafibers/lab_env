@@ -12,7 +12,7 @@ install_flink=true
 install_mongo=true
 install_spark=true
 install_livy=false
-install_grafana=false
+install_grafana=true
 install_elastic=false
 install_zeppelin=true
 install_hbase=true
@@ -42,8 +42,8 @@ dl_link_elastic=https://download.elastic.co/elasticsearch/release/org/elasticsea
 file_name_zeppelin=zeppelin-0.7.3.tgz
 dl_link_zeppelin=https://archive.apache.org/dist/zeppelin/zeppelin-0.7.3/zeppelin-0.7.3-bin-all.tgz
 
-file_name_grafana=grafana-4.6.2.tar.gz
-dl_link_grafana=https://s3-us-west-2.amazonaws.com/grafana-releases/release/grafana-4.6.2.linux-x64.tar.gz
+file_name_grafana=grafana-5.0.3.tar.gz
+dl_link_grafana=https://s3-us-west-2.amazonaws.com/grafana-releases/release/grafana-5.0.3.linux-x64.tar.gz
 
 file_name_spark=spark-2.2.0.tgz
 dl_link_spark=https://archive.apache.org/dist/spark/spark-2.2.0/spark-2.2.0-bin-hadoop2.7.tgz

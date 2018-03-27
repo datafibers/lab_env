@@ -291,6 +291,15 @@ if [ -h ${DF_APP_DEP}/hive ]; then
 else
 	echo "[WARN] Apache Hive Not Found"
 fi
+if [ -h ${DF_APP_DEP}/hive2 ]; then
+	${DF_APP_DEP}/hive2/bin/hive --service metastore 1>> ${DF_APP_LOG}/metastore_h2.log 2>> ${DF_APP_LOG}/metastore_h2.log &
+	echo "[INFO] Started [Apache Hive2 Metastore]"
+	${DF_APP_DEP}/hive2/bin/hive --service hiveserver2 1>> ${DF_APP_LOG}/hiveserver2_h2.log 2>> ${DF_APP_LOG}/hiveserver2_h2.log &
+	echo "[INFO] Started [Apache Hive2 Server2]"
+	sleep 3
+else
+	echo "[WARN] Apache Hive2 Not Found"
+fi
 }
 
 stop_hadoop () {
@@ -305,7 +314,7 @@ sid=$(getSID hiveserver2)
 kill -9 ${sid} 2> /dev/null
 echo "[INFO] Shutdown [Apache Hive Server2]"
 }
-
+# Need update for hive2
 getSID() {
 local ps_name=$1
 local sid=$(ps -ef|grep -i ${ps_name}|grep -v grep|sed 's/\s\+/ /g'|cut -d " " -f2|head -1)

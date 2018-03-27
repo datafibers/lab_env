@@ -2,15 +2,22 @@
 This is very lightweighted vagrant image for Hadoop big data training. The total memory needed is only 4G (450M left after all service are started).
 
 ## Soft Installed
-This distribution is packaged according to the [HDP 2.6.4](https://docs.hortonworks.com/HDPDocuments/HDP2/HDP-2.6.4/bk_release-notes/content/comp_versions.html).
+This distribution is compatible with [HDP 2.6.4](https://docs.hortonworks.com/HDPDocuments/HDP2/HDP-2.6.4/bk_release-notes/content/comp_versions.html), besides upgrade hive 2 to 2.3.
 * apache-phoenix-4.13.1-HBase-1.1-bin/
 * confluent-3.3.0/
 * flink-1.3.2/
 * hadoop-2.7.3/
 * hbase-1.1.2/
 * hive-1.2.1/
+* hive-2.3.2/
 * spark-2.2.0/
 * zeppelin-0.7.3/
+* mongodb-3.4
+* grafana-5.0.3
+* mysql-latest
+* maven-latest
+* git-latest
+* dos2unix-latest
 
 ## Quick Setup
 1. Install [Oracle VirtualBox](https://www.virtualbox.org/wiki/Downloads)
@@ -20,13 +27,14 @@ This distribution is packaged according to the [HDP 2.6.4](https://docs.hortonwo
 5. To update ```cd lan_env && git pull && vagrant provision```
 
 ## Know Issues
-* When vagrant up is hanging there (connection timeout) for the first time installation. Check if you running VM has network connection.
-* After installed, you'll need to run ```ops format``` to format hadoop
+* When vagrant up is hanging there (connection timeout) for the first time installation. Check if you running VM has network connection option choose.
+* After installed, you'll need to run ```ops format``` to format hadoop for the very first time.
 
 ## Operation Command Reference (in VM)
 * Enter ```ops``` to get full command help
 * Enter ```ops start all``` to start all service
 * Enter ```ops status``` to check status as follows
+
 ```
 vagrant@vagrant:~$ ops status
 ****************Starting Operations****************
@@ -48,6 +56,21 @@ vagrant@vagrant:~$ ops status
 [INFO]   [HiveServer2]        is running at [2953]
 [INFO]   [HiveMetaStore]      is running at [2952]
 ```
+
+## Tool Command Reference (in VM)
+* Enter ```mongo``` to connect to mongodb
+* Enter ```mysql -u root --password="mypassword"``` to connect to mysql
+* Enter ```beeline -u jdbc:hive2://localhost:10000/``` to connect to hive1
+* Enter ```beeline -u jdbc:hive2://localhost:10500/``` to connect to hive2
+* Enter ```spark-sql``` to use spark sql shell
+* Enter ```spark-shell``` to use spark scala shell
+* Enter ```pyspark``` to use spark python shell
+* Enter ```hbase shell``` to use hbase shell
+* Enter ```sqlline.py localhost``` to use phoenix shell
+* Browse http://localhost:8080 to use zeppelin
+* Browse http://localhost:8001 to use flink web console
+* Browse http://localhost:3000 to use grafana
+
 ## Vagrant Command Reference (outside VM)
 * Start the vm/image install
 ```
