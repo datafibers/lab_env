@@ -270,6 +270,11 @@ if [ "$install_hive" = true ] || [ "$install_hive2" = true ]; then
     fi
 fi
 
+echo "Creating keys for passwordless ssh"
+echo -e  'y' | ssh-keygen -t rsa -f ~/.ssh/id_rsa -q -P ''
+cat ~/.ssh/id_rsa.pub >> ~/.ssh/authorized_keys
+chmod 600 ~/.ssh/authorized_keys
+
 echo "***************************************************************************************"
 echo "* Lab Virtual Machine Setup is Completed.                                              *"
 echo "* SSH address:localhost:2222.                                                          *"
