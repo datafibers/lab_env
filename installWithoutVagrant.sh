@@ -16,9 +16,13 @@ fi
 
 REPLACE_FILE=${CURRENT_DIR}/vagrant_shell/deb.sh
 
+echo ${CURRENT_DIR}
+echo ${REPLACE_FILE}
+echo ${USER}
+
 cp ~/.profile ~/.profile.bk
 cp ${REPLACE_FILE} ${CURRENT_DIR}
-sed -i 's/\/vagrant/${CURRENT_DIR}/g' ${CURRENT_DIR}/deb.sh
-sed -i 's/\vagrant:vagrant/${USER}:${USER}/g' ${CURRENT_DIR}/deb.sh
+sed -i "s/\/vagrant/${CURRENT_DIR}/g" ${CURRENT_DIR}/deb.sh
+sed -i "s/vagrant:vagrant/${USER}:${USER}/g" ${CURRENT_DIR}/deb.sh
 chmod +x ${CURRENT_DIR}/deb.sh
 # ${CURRENT_DIR}/deb.sh
