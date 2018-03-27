@@ -26,7 +26,7 @@ This distribution is compatible with [HDP 2.6.4](https://docs.hortonworks.com/HD
 4. To install ```cd lab_env && vagrant up```
 5. To update ```cd lan_env && git pull && vagrant provision```
 
-## Know Issues
+## Known Issues
 * When vagrant up is hanging there (connection timeout) for the first time installation. Check if you running VM has network connection option choose.
 * After installed, you'll need to run ```ops format``` to format hadoop for the very first time.
 
