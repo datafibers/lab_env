@@ -6,6 +6,9 @@ VAGRANTFILE_API_VERSION = "2"
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.vm.define "deb" do |deb|
     deb.vm.box = "bento/ubuntu-16.04"
+    config.vm.provider 'virtualbox' do |vb|
+      vb.customize ['modifyvm', :id, '--cableconnected1', 'on']
+    end
     deb.vm.provision "shell", path: "vagrant_shell/deb.sh"
   end
 
