@@ -2,11 +2,10 @@
 set -e
 
 #install flags
-install_java=true
+install_java=true #install oracle java 8
 
 install_hadoop=true
-install_hive=true
-install_hive2=true
+install_hive=true #this is to install both hive 1 and 2. Default is hive 2
 install_confluent=true
 install_flink=true
 install_mongo=true
@@ -126,7 +125,7 @@ soft_install $install_hadoop hadoop $dl_link_hadoop $file_name_hadoop
 soft_install $install_hive hive $dl_link_hive $file_name_hive
 
 # Install and configure Hive v2
-soft_install $install_hive2 hive2 $dl_link_hive2 $file_name_hive2
+soft_install $install_hive hive2 $dl_link_hive2 $file_name_hive2
 
 # Install CP
 soft_install $install_confluent confluent $dl_link_confluent $file_name_confluent
@@ -169,7 +168,7 @@ fi
 
 #Install Java 8
 JAVA_VER=$(java -version 2>&1 | grep -i version | sed 's/.*version ".*\.\(.*\)\..*"/\1/; 1q')
-if [ "$JAVA_VER" != "8" ] && [ "$install_java" = "true" ]; then
+if [ "$install_java" = "true" ]; then
     echo "installing java 8 ..."
     cd /opt/
     wget --no-check-certificate --header "Cookie: oraclelicense=accept-securebackup-cookie" $dl_link_java
@@ -217,7 +216,7 @@ fi
 if [ "$install_mongo" = true ]; then
 # Enable mongodb access from out side of vm
   sudo mv /etc/mongod.conf /etc/mongod.conf.bk
-  cp /mnt/etc/mongo/mongod.conf /etc/
+  sudo cp /mnt/etc/mongo/mongod.conf /etc/
 fi
 
 if [ "$install_spark" = true ]; then
@@ -239,7 +238,7 @@ if [ "$install_zeppelin" = true ]; then
   cp /opt/hadoop/share/hadoop/common/hadoop-common-*.jar /opt/zeppelin/interpreter/jdbc/
 fi
 
-if [ "$install_hive" = true ] || [ "$install_hive2" = true ]; then
+if [ "$install_hive" = true ]; then
     # Install MySQL Metastore for Hive - do this after creating profiles in order to use hive schematool
     sudo apt-get -y update
     sudo debconf-set-selections <<< 'mysql-server mysql-server/root_password password mypassword'
@@ -257,17 +256,10 @@ if [ "$install_hive" = true ] || [ "$install_hive2" = true ]; then
     mysql -u root --password="mypassword" \
     -e "GRANT ALL PRIVILEGES ON metastore.* TO 'hive'@'localhost' IDENTIFIED BY 'mypassword'; FLUSH PRIVILEGES;"
 
-    if [ "$install_hive2" = true ]; then
-        sudo ln -sfn /usr/share/java/mysql-connector-java.jar /opt/hive2/lib/mysql-connector-java.jar
-        cp /mnt/etc/hive2/hive-site.xml /opt/hive2/conf/
-        /opt/hive2/bin/schematool -dbType mysql -initSchema
-        echo "Init. schema using hive version 2"
-    else
-        sudo ln -sfn /usr/share/java/mysql-connector-java.jar /opt/hive/lib/mysql-connector-java.jar
-        cp /mnt/etc/hive/hive-site.xml /opt/hive/conf/
-        /opt/hive/bin/schematool -dbType mysql -initSchema
-        echo "Init. schema using hive version 1"
-    fi
+    sudo ln -sfn /usr/share/java/mysql-connector-java.jar /opt/hive2/lib/mysql-connector-java.jar
+    cp /mnt/etc/hive2/hive-site.xml /opt/hive2/conf/
+    /opt/hive2/bin/schematool -dbType mysql -initSchema
+    echo "Init. schema using hive version 2"
 fi
 
 echo "Creating keys for passwordless ssh"

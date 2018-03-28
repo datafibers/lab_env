@@ -21,8 +21,9 @@ echo "setup environment for user:"${USER}
 
 cp ~/.profile ~/.profile.bk
 cp ${REPLACE_FILE} ${CURRENT_DIR}
-sed -i "s/\/vagrant\//${CURRENT_DIR_REPLACE}/g" ${CURRENT_DIR}/deb.sh
-sed -i "s/vagrant:vagrant/${USER}:${USER}/g" ${CURRENT_DIR}/deb.sh
+sed -i "s/\/home\/vagrant/\/home\/${USER}/g" ${CURRENT_DIR}/deb.sh       ## replace /home/vagrant to /home/df
+sed -i "s/\/vagrant\//${CURRENT_DIR_REPLACE}/g" ${CURRENT_DIR}/deb.sh    ## replace /vagrant/ to ${CURRENT_DIR}
+sed -i "s/vagrant:vagrant/${USER}:${USER}/g" ${CURRENT_DIR}/deb.sh       ## replace ownership
 chmod +x ${CURRENT_DIR}/deb.sh
 ${CURRENT_DIR}/deb.sh
 rm -r ${CURRENT_DIR}/deb.sh
