@@ -124,7 +124,8 @@ JAVA_VER=$(java -version 2>&1 | grep -i version | sed 's/.*version ".*\.\(.*\)\.
 if [ "$JAVA_VER" != "8" ] && [ "$install_java" = "true" ]; then
     echo "installing java 8 ..."
     cd /opt/
-    wget --no-check-certificate --header "Cookie: oraclelicense=accept-securebackup-cookie" $dl_link_java
+    # wget --no-check-certificate --header "Cookie: oraclelicense=accept-securebackup-cookie" $dl_link_java
+    aria2c -x2 --header="Cookie: oraclelicense=accept-securebackup-cookie" $dl_link_java
     tar -zxf jdk-8u161-linux-x64.tar.gz
     ln -sfn /opt/jdk1.8.0_161 /opt/jdk
     sudo update-alternatives --install /usr/bin/java java /opt/jdk/bin/java 8000
