@@ -215,7 +215,9 @@ if [ "$install_hive" = true ]; then
     ln -sfn /usr/share/java/mysql-connector-java.jar /opt/hive2/lib/mysql-connector-java.jar
     ln -sfn /usr/share/java/mysql-connector-java.jar /opt/hive/lib/mysql-connector-java.jar
     
-    cp /mnt/etc/hive2/hive-site.xml /opt/hive2/conf/
+    cp /mnt/etc/hive2/* /opt/hive2/conf/
+    cp /mnt/etc/hive/* /opt/hive/conf/
+    
     /opt/hive2/bin/schematool -dbType mysql -initSchema
     echo "Init. schema using hive version 2"
 fi
