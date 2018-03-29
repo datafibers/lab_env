@@ -1,21 +1,7 @@
 #!/bin/bash
 set -e
 
-#install flags
-install_java=true #install oracle java 8
-
-install_hadoop=true
-install_hive=true #this is to install both hive 1 and 2. Default is hive 2
-install_confluent=true
-install_flink=true
-install_mongo=true
-install_spark=true
-install_livy=false
-install_grafana=true
-install_elastic=false
-install_zeppelin=true
-install_hbase=true
-install_phoenix=true
+./install_config.sh
 
 #software repository links
 dl_link_java=http://download.oracle.com/otn-pub/java/jdk/8u161-b12/2f38c3b165be4555a1fa6e98c45e0808/jdk-8u161-linux-x64.tar.gz
