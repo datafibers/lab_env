@@ -273,6 +273,9 @@ echo -e  'y' | ssh-keygen -t rsa -f ~/.ssh/id_rsa -q -P ''
 cat ~/.ssh/id_rsa.pub >> ~/.ssh/authorized_keys
 chmod 600 ~/.ssh/authorized_keys
 
-echo "******************************************"
-echo "* Lab Virtual Machine Setup is Completed.*"
-echo "******************************************"
+echo "***************************************************************************************"
+echo "* Lab Virtual Machine Setup Completed.                                                 *"
+echo "* SSH address:localhost:2222.                                                          *"
+echo "* SSH username|password:vagrant|vagrant                                                *"
+echo "* Command: ssh vagrant@localhost -p 2222                                               *"
+echo "***************************************************************************************"

@@ -51,3 +51,5 @@ PATH="$JAVA_HOME/bin:$PATH"
 PATH="$LAB_HOME:$PATH"
 
 alias ops='ops.sh'
+alias bee='bee.sh'
+
