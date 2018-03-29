@@ -87,7 +87,8 @@ function soft_install
 	    fi
             cd /tmp/vagrant-downloads
             if [ ! -e $file_name ]; then
-                wget --progress=bar:force -O $file_name $dl_link --no-check-certificate
+                # wget --progress=bar:force -O $file_name $dl_link --no-check-certificate
+                aria2c -x5 $dl_link -o $file_name
             fi
             cd /opt/
             mkdir -p $install_folder && tar xf /tmp/vagrant-downloads/$file_name -C $install_folder
@@ -116,6 +117,8 @@ fi
 chmod a+rwx /mnt
 
 sudo apt-get -y update
+# Install download tool
+sudo apt-get -y install aria2
 
 # Install and configure Apache Hadoop
 echo "install - hdp"
@@ -155,7 +158,8 @@ soft_install $install_livy livy $dl_link_livy $file_name_livy
 soft_install $install_grafana grafana $dl_link_grafana $file_name_grafana
 
 # Install MongoDB
-if [ "$install_mongo" = true ]; then
+MONGO_VERSION=$(mongo -version 2>&1 | grep -i version | sed 's/MongoDB shell version v//g'|head -1|cut -c1-3)
+if [ "$MONGO_VERSION" != "3.4" ] && [ "$install_mongo" = true ]; then
     sudo rm -f /etc/apt/sources.list.d/mongodb*.list
     sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv 0C49F3730359A14518585931BC711F9BA15703C6
     echo "deb [ arch=amd64,arm64 ] http://repo.mongodb.org/apt/ubuntu xenial/mongodb-org/3.4 multiverse" | sudo tee /etc/apt/sources.list.d/mongodb-org-3.4.list
@@ -168,7 +172,7 @@ fi
 
 #Install Java 8
 JAVA_VER=$(java -version 2>&1 | grep -i version | sed 's/.*version ".*\.\(.*\)\..*"/\1/; 1q')
-if [ "$install_java" = "true" ]; then
+if [ "$JAVA_VER" != "8" ] && [ "$install_java" = "true" ]; then
     echo "installing java 8 ..."
     cd /opt/
     wget --no-check-certificate --header "Cookie: oraclelicense=accept-securebackup-cookie" $dl_link_java
@@ -256,7 +260,9 @@ if [ "$install_hive" = true ]; then
     mysql -u root --password="mypassword" \
     -e "GRANT ALL PRIVILEGES ON metastore.* TO 'hive'@'localhost' IDENTIFIED BY 'mypassword'; FLUSH PRIVILEGES;"
 
-    sudo ln -sfn /usr/share/java/mysql-connector-java.jar /opt/hive2/lib/mysql-connector-java.jar
+    ln -sfn /usr/share/java/mysql-connector-java.jar /opt/hive2/lib/mysql-connector-java.jar
+    ln -sfn /usr/share/java/mysql-connector-java.jar /opt/hive/lib/mysql-connector-java.jar
+    
     cp /mnt/etc/hive2/hive-site.xml /opt/hive2/conf/
     /opt/hive2/bin/schematool -dbType mysql -initSchema
     echo "Init. schema using hive version 2"
