@@ -12,4 +12,4 @@ else
 fi
 
 url="jdbc:hive2://localhost:"${port}
-beeline -u ${url}
+beeline -u ${url} -n vagrant
