@@ -1,6 +1,8 @@
 #!/bin/bash
 set -e
 
+STARTTIME=$(date +%s)
+
 . /vagrant/config/install_config.sh
 . /vagrant/config/install_version.sh
 
@@ -223,9 +225,12 @@ echo -e  'y' | ssh-keygen -t rsa -f ~/.ssh/id_rsa -q -P ''
 cat ~/.ssh/id_rsa.pub >> ~/.ssh/authorized_keys
 chmod 600 ~/.ssh/authorized_keys
 
-echo "***************************************************************************************"
-echo "* Lab Virtual Machine Setup Completed.                                                 *"
-echo "* SSH address:localhost:2222.                                                          *"
-echo "* SSH username|password:vagrant|vagrant                                                *"
-echo "* Command: ssh vagrant@localhost -p 2222                                               *"
-echo "***************************************************************************************"
+ENDTIME=$(date +%s)
+echo "It takes "$(($ENDTIME - $STARTTIME))/60" minutes to complete this installation."
+
+echo "===============================================================>"
+echo "=> The Lab Virtual Machine setup has completed in "$(($ENDTIME - $STARTTIME))/60" minutes."
+echo "=> SSH address:localhost:2222."
+echo "=> SSH username|password:vagrant|vagrant"
+echo "=> Command: ssh vagrant@localhost -p 2222"
+echo "===============================================================>"
