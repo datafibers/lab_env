@@ -2,15 +2,15 @@
 This is very lightweighted vagrant image for Hadoop big data lab. The total memory needed is only 4G (450M left after all service are started). It will take around 15 minutes to download and setup.
 
 ## Soft Installed
-This distribution is compatible with [HDP 2.6.4](https://docs.hortonworks.com/HDPDocuments/HDP2/HDP-2.6.4/bk_release-notes/content/comp_versions.html), besides upgrade hive 2 to 2.3.
+This distribution is compatible with [HDP 2.6.4](https://docs.hortonworks.com/HDPDocuments/HDP2/HDP-2.6.4/bk_release-notes/content/comp_versions.html), besides upgrade hive and hadoop to stable version.
 
 | Hadooper      | Stream          | Visualization  | Utility |
 | ------------- |-----------------| ---------------|---------|
-| hadoop-2.7.3  | flink-1.3.2     | grafana-5.0.3  | git     |
-| hive-1.2.1    | spark-2.2.0     | zeppelin-0.7.3 | mysql   |
+| hadoop-2.7.5  | flink-1.3.2     | grafana-5.0.3  | git     |
+| hive-1.2.2    | spark-2.2.0     | zeppelin-0.7.3 | mysql   |
 | hive-2.3.2    | confluent-3.3.0 |                | maven   |
-| hbase-1.1.2   |                 |                | dos2unix|
-| phoenix-4.13.1|                 |                | aria2   |
+| hbase-1.2.2   |                 |                | dos2unix|
+| phoenix-4.13.2|                 |                | aria2   |
 
 ## Quick Setup
 1. Install [Oracle VirtualBox](https://www.virtualbox.org/wiki/Downloads)
