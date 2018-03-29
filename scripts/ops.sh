@@ -66,8 +66,10 @@ HADOOP_NN_DAEMON_NAME=NameNode
 HADOOP_DN_DAEMON_NAME=DataNode
 YARN_RM_DAEMON_NAME=ResourceManager
 YARN_NM_DAEMON_NAME=NodeManager
-HIVE_SERVER_DAEMON_NAME=hiveserver2
-HIVE_METADATA_NAME=HiveMetaStore
+HIVE_SERVER_DAEMON_NAME=hive/.*HiveServer2
+HIVE_METADATA_NAME=hive/.*HiveMetaStore
+HIVE2_SERVER_DAEMON_NAME=hive2/.*HiveServer2
+HIVE2_METADATA_NAME=hive2/*HiveMetaStore
 
 echo "****************Starting Operations****************"
 
@@ -306,16 +308,23 @@ stop_hadoop () {
 echo "[INFO] Shutdown [Apache Hadoop]"
 stop-yarn.sh
 stop-dfs.sh
-sid=$(getSID hivemetastore)
+sid=$(getSID ${HIVE_METADATA_NAME})
 kill -9 ${sid} 2> /dev/null
 echo "[INFO] Shutdown [Apache Hive MetaStore]"
 sleep 2
-sid=$(getSID hiveserver2)
+sid=$(getSID ${HIVE2_METADATA_NAME})
+kill -9 ${sid} 2> /dev/null
+echo "[INFO] Shutdown [Apache Hive2 MetaStore]"
+sleep 2
+sid=$(getSID ${HIVE_SERVER_DAEMON_NAME})
 kill -9 ${sid} 2> /dev/null
 echo "[INFO] Shutdown [Apache Hive Server2]"
+sleep 2
+sid=$(getSID ${HIVE2_SERVER_DAEMON_NAME})
+kill -9 ${sid} 2> /dev/null
+echo "[INFO] Shutdown [Apache Hive2 Server2]"
 }
 
-# Need update for hive2
 getSID() {
 local ps_name=$1
 local sid=$(ps -ef|grep -i ${ps_name}|grep -v grep|sed 's/\s\+/ /g'|cut -d " " -f2|head -1)
@@ -456,6 +465,8 @@ status_all () {
     status ${YARN_NM_DAEMON_NAME} Yarn_NodeMgr
     status ${HIVE_SERVER_DAEMON_NAME} HiveServer2
     status ${HIVE_METADATA_NAME} HiveMetaStore
+    status ${HIVE2_SERVER_DAEMON_NAME} Hive2Server2
+    status ${HIVE2_METADATA_NAME} Hive2MetaStore   
 }
 
 if [ "${action}" = "start" ] ; then

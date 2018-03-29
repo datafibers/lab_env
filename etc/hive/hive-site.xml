@@ -46,6 +46,11 @@
     <value>thrift://localhost:9083</value>
     <description>default metastore port</description>
   </property>
+
+  <property>
+    <name>hive.metastore.port</name>
+    <value>9083</value>
+  </property>
   
   <property>
     <name>hive.metastore.schema.verification</name>
