@@ -69,7 +69,7 @@ YARN_NM_DAEMON_NAME=NodeManager
 HIVE_SERVER_DAEMON_NAME=hive/.*HiveServer2
 HIVE_METADATA_NAME=hive/.*HiveMetaStore
 HIVE2_SERVER_DAEMON_NAME=hive2/.*HiveServer2
-HIVE2_METADATA_NAME=hive2/*HiveMetaStore
+HIVE2_METADATA_NAME=hive2/.*HiveMetaStore
 
 echo "****************Starting Operations****************"
 
