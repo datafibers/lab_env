@@ -3,34 +3,24 @@ This is very lightweighted vagrant image for Hadoop big data lab. The total memo
 
 ## Soft Installed
 This distribution is compatible with [HDP 2.6.4](https://docs.hortonworks.com/HDPDocuments/HDP2/HDP-2.6.4/bk_release-notes/content/comp_versions.html), besides upgrade hive 2 to 2.3.
-* apache-phoenix-4.13.1-HBase-1.1-bin/
-* confluent-3.3.0/
-* flink-1.3.2/
-* hadoop-2.7.3/
-* hbase-1.1.2/
-* hive-1.2.1/
-* hive-2.3.2/
-* spark-2.2.0/
-* zeppelin-0.7.3/
-* mongodb-3.4
-* grafana-5.0.3
-* mysql-latest
-* maven-latest
-* git-latest
-* dos2unix-latest
+
+| Hadooper      | Stream          | Visualization  | Utility |
+| ------------- |-----------------| ---------------|---------|
+| hadoop-2.7.3  | flink-1.3.2     | grafana-5.0.3  | git     |
+| hive-1.2.1    | spark-2.2.0     | zeppelin-0.7.3 | mysql   |
+| hive-2.3.2    | confluent-3.3.0 |                | maven   |
+| hbase-1.1.2   |                 |                | dos2unix|
+| phoenix-4.13.1|                 |                | aria2   |
 
 ## Quick Setup
 1. Install [Oracle VirtualBox](https://www.virtualbox.org/wiki/Downloads)
-2. Install [Vagrant](https://www.vagrantup.com/downloads.html)
-3. Go to a proper folder and git clone this repository ```git clone https://github.com/datafibers/lab_env.git```
-4. To install ```cd lab_env && vagrant up```
-5. To update ```cd lan_env && git pull && vagrant provision```
-6. To install specific config, you can modify the ```conf/install_config.sh``` or ```conf/install_version.sh``` before ```vagrant up```
-7. To install specific config from branch, ```git checkout <branch_name>```, then ```vagrant up```
-
-## Known Issues
-* When vagrant up is hanging there (connection timeout) for the first time installation. Check if you running VM has network connection option choose.
-* After installed, you'll need to run ```ops format``` to format hadoop for the very first time.
+1. Install [Vagrant](https://www.vagrantup.com/downloads.html)
+1. Go to a proper folder and git clone this repository ```git clone https://github.com/datafibers/lab_env.git```
+1. If you prefer to customize install config, you can modify the ```conf/install_config.sh or install_version.sh``` first
+1. If you prefer to install specific config from branch, ```git checkout <branch_name>``` first
+1. To install ```cd lab_env && vagrant up```
+1. After installed, you'll need to run ```ops format``` to format hadoop for the very first time.
+1. To update ```cd lan_env && git pull && vagrant provision```
 
 ## Operation Command Reference (in VM)
 * Enter ```ops``` to get full command help
@@ -57,6 +47,8 @@ vagrant@vagrant:~$ ops status
 [INFO]   [Yarn_NodeMgr]       is running at [2737]
 [INFO]   [HiveServer2]        is running at [2953]
 [INFO]   [HiveMetaStore]      is running at [2952]
+[INFO]   [Hive2Server2]       is running at [2954]
+[INFO]   [Hive2MetaStore]     is running at [2955]
 ```
 
 ## Tool Command Reference (in VM)
