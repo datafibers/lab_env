@@ -226,8 +226,8 @@ cat ~/.ssh/id_rsa.pub >> ~/.ssh/authorized_keys
 chmod 600 ~/.ssh/authorized_keys
 
 ENDTIME=$(date +%s)
-echo "=====================================================================>"
+echo "======================================================================>"
 echo "=> The Lab Virtual Machine setup has completed in $((($ENDTIME - $STARTTIME)/60)) minutes $((($ENDTIME - $STARTTIME)%60)) seconds."
-echo "=> SSH Command : ssh vagrant@localhost -p 2222
+echo "=> SSH Command : ssh vagrant@localhost -p 2222"
 echo "=> SSH Password: vagrant"
-echo "=====================================================================>"
+echo "======================================================================>"
