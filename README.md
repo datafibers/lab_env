@@ -1,5 +1,5 @@
 # Overview
-This is very lightweighted vagrant image for Hadoop big data training. The total memory needed is only 4G (450M left after all service are started).
+This is very lightweighted vagrant image for Hadoop big data lab. The total memory needed is only 4G (450M left after all service are started). It will take around 15 minutes to download and setup.
 
 ## Soft Installed
 This distribution is compatible with [HDP 2.6.4](https://docs.hortonworks.com/HDPDocuments/HDP2/HDP-2.6.4/bk_release-notes/content/comp_versions.html), besides upgrade hive 2 to 2.3.
@@ -25,6 +25,8 @@ This distribution is compatible with [HDP 2.6.4](https://docs.hortonworks.com/HD
 3. Go to a proper folder and git clone this repository ```git clone https://github.com/datafibers/lab_env.git```
 4. To install ```cd lab_env && vagrant up```
 5. To update ```cd lan_env && git pull && vagrant provision```
+6. To install specific config, you can modify the ```conf/install_config.sh``` or ```conf/install_version.sh``` before ```vagrant up```
+7. To install specific config from branch, ```git checkout <branch_name>```, then ```vagrant up```
 
 ## Known Issues
 * When vagrant up is hanging there (connection timeout) for the first time installation. Check if you running VM has network connection option choose.
