@@ -27,9 +27,9 @@ export JAVA_HOME="/opt/jdk"
 export HADOOP_USER_CLASSPATH_FIRST=true
 export HADOOP_CONF_DIR="/mnt/etc/hadoop"
 export HADOOP_LOG_DIR="/mnt/logs"
-export HIVE_CONF_DIR="/mnt/etc/hive"
+# export HIVE_CONF_DIR="/mnt/etc/hive2"
 export HADOOP_HOME="/opt/hadoop"
-export HIVE_HOME="/opt/hive"
+# export HIVE_HOME="/opt/hive2" # in order to run two version of hive, have to comment it out and use in hive-env.sh since setting her has the highest privilige
 export CONFLUENT_HOME="/opt/confluent"
 export FLINK_HOME="/opt/flink"
 export SPARK_HOME="/opt/spark"
@@ -39,7 +39,7 @@ export PHOENIX_HOME="/opt/phoenix"
 
 PATH="$HADOOP_HOME/bin:$PATH"
 PATH="$HADOOP_HOME/sbin:$PATH"
-PATH="$HIVE_HOME/bin:$PATH"
+# PATH="$HIVE_HOME/bin:$PATH"
 PATH="$CONFLUENT_HOME/bin:$PATH"
 PATH="$FLINK_HOME/bin:$PATH"
 PATH="$SPARK_HOME/bin:$PATH"
@@ -51,3 +51,5 @@ PATH="$JAVA_HOME/bin:$PATH"
 PATH="$LAB_HOME:$PATH"
 
 alias ops='ops.sh'
+alias bee='bee.sh'
+
