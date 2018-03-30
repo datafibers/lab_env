@@ -1,57 +1,10 @@
 #!/bin/bash
 set -e
 
-#install flags
-install_java=true
+STARTTIME=$(date +%s)
 
-install_hadoop=true
-install_hive=true
-install_confluent=true
-install_flink=true
-install_mongo=true
-install_spark=true
-install_livy=false
-install_grafana=false
-install_elastic=false
-install_zeppelin=true
-install_hbase=true
-install_phoenix=true
-
-#software repository links
-dl_link_java=http://download.oracle.com/otn-pub/java/jdk/8u161-b12/2f38c3b165be4555a1fa6e98c45e0808/jdk-8u161-linux-x64.tar.gz
-
-file_name_hadoop=hadoop-2.7.3.tar.gz
-dl_link_hadoop=https://archive.apache.org/dist/hadoop/common/hadoop-2.7.3/hadoop-2.7.3.tar.gz
-
-file_name_hive=hive-1.2.1.tar.gz
-dl_link_hive=https://archive.apache.org/dist/hive/hive-1.2.1/apache-hive-1.2.1-bin.tar.gz
-
-file_name_confluent=confluent-3.3.0.tar.gz
-dl_link_confluent=http://packages.confluent.io/archive/3.3/confluent-oss-3.3.0-2.11.tar.gz
-
-file_name_flink=flink-1.3.2.tgz
-dl_link_flink=http://www-us.apache.org/dist/flink/flink-1.3.2/flink-1.3.2-bin-hadoop26-scala_2.11.tgz
-
-file_name_elastic=elastic-2.3.4.tar.gz
-dl_link_elastic=https://download.elastic.co/elasticsearch/release/org/elasticsearch/distribution/tar/elasticsearch/2.3.4/elasticsearch-2.3.4.tar.gz
-
-file_name_zeppelin=zeppelin-0.7.3.tgz
-dl_link_zeppelin=https://archive.apache.org/dist/zeppelin/zeppelin-0.7.3/zeppelin-0.7.3-bin-all.tgz
-
-file_name_grafana=grafana-4.6.2.tar.gz
-dl_link_grafana=https://s3-us-west-2.amazonaws.com/grafana-releases/release/grafana-4.6.2.linux-x64.tar.gz
-
-file_name_spark=spark-2.2.0.tgz
-dl_link_spark=https://archive.apache.org/dist/spark/spark-2.2.0/spark-2.2.0-bin-hadoop2.7.tgz
-
-file_name_hbase=hbase-1.1.2.tar.gz
-dl_link_hbase=https://archive.apache.org/dist/hbase/1.1.2/hbase-1.1.2-bin.tar.gz
-
-file_name_phoenix=phoenix-4.13.1.tar.gz
-dl_link_phoenix=http://archive.apache.org/dist/phoenix/apache-phoenix-4.13.1-HBase-1.1/bin/apache-phoenix-4.13.1-HBase-1.1-bin.tar.gz
-
-file_name_livy=livy-0.4.0.tar.gz
-dl_link_livy=https://github.com/datafibers-community/df_demo/releases/download/livy/livy-0.4.0-incubating-bin.tar.gz
+. /vagrant/config/install_config.sh
+. /vagrant/config/install_version.sh
 
 # sample call install_flag soft_install dl_link, such as
 # soft_install $install_hadoop hadoop $dl_link_hadoop
@@ -84,7 +37,9 @@ function soft_install
 	    fi
             cd /tmp/vagrant-downloads
             if [ ! -e $file_name ]; then
-                wget --progress=bar:force -O $file_name $dl_link --no-check-certificate
+                # wget --progress=bar:force -O $file_name $dl_link --no-check-certificate
+                echo "Please wait, downloading ..."
+                aria2c -x5 $dl_link -o $file_name
             fi
             cd /opt/
             mkdir -p $install_folder && tar xf /tmp/vagrant-downloads/$file_name -C $install_folder
@@ -113,6 +68,8 @@ fi
 chmod a+rwx /mnt
 
 sudo apt-get -y update
+# Install download tool
+sudo apt-get -y install aria2
 
 # Install and configure Apache Hadoop
 echo "install - hdp"
@@ -120,6 +77,9 @@ soft_install $install_hadoop hadoop $dl_link_hadoop $file_name_hadoop
 
 # Install and configure Hive
 soft_install $install_hive hive $dl_link_hive $file_name_hive
+
+# Install and configure Hive v2
+soft_install $install_hive hive2 $dl_link_hive2 $file_name_hive2
 
 # Install CP
 soft_install $install_confluent confluent $dl_link_confluent $file_name_confluent
@@ -149,7 +109,8 @@ soft_install $install_livy livy $dl_link_livy $file_name_livy
 soft_install $install_grafana grafana $dl_link_grafana $file_name_grafana
 
 # Install MongoDB
-if [ "$install_mongo" = true ]; then
+MONGO_VERSION=$(mongo -version 2>&1 | grep -i version | sed 's/MongoDB shell version v//g'|head -1|cut -c1-3)
+if [ "$MONGO_VERSION" != "3.4" ] && [ "$install_mongo" = true ]; then
     sudo rm -f /etc/apt/sources.list.d/mongodb*.list
     sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv 0C49F3730359A14518585931BC711F9BA15703C6
     echo "deb [ arch=amd64,arm64 ] http://repo.mongodb.org/apt/ubuntu xenial/mongodb-org/3.4 multiverse" | sudo tee /etc/apt/sources.list.d/mongodb-org-3.4.list
@@ -165,7 +126,8 @@ JAVA_VER=$(java -version 2>&1 | grep -i version | sed 's/.*version ".*\.\(.*\)\.
 if [ "$JAVA_VER" != "8" ] && [ "$install_java" = "true" ]; then
     echo "installing java 8 ..."
     cd /opt/
-    wget --no-check-certificate --header "Cookie: oraclelicense=accept-securebackup-cookie" $dl_link_java
+    # wget --no-check-certificate --header "Cookie: oraclelicense=accept-securebackup-cookie" $dl_link_java
+    aria2c -x2 --header="Cookie: oraclelicense=accept-securebackup-cookie" $dl_link_java
     tar -zxf jdk-8u161-linux-x64.tar.gz
     ln -sfn /opt/jdk1.8.0_161 /opt/jdk
     sudo update-alternatives --install /usr/bin/java java /opt/jdk/bin/java 8000
@@ -210,7 +172,7 @@ fi
 if [ "$install_mongo" = true ]; then
 # Enable mongodb access from out side of vm
   sudo mv /etc/mongod.conf /etc/mongod.conf.bk
-  cp /mnt/etc/mongo/mongod.conf /etc/
+  sudo cp /mnt/etc/mongo/mongod.conf /etc/
 fi
 
 if [ "$install_spark" = true ]; then
@@ -232,35 +194,45 @@ if [ "$install_zeppelin" = true ]; then
   cp /opt/hadoop/share/hadoop/common/hadoop-common-*.jar /opt/zeppelin/interpreter/jdbc/
 fi
 
-# Install MySQL Metastore for Hive - do this after creating profiles in order to use hive schematool
-sudo apt-get -y update
-sudo debconf-set-selections <<< 'mysql-server mysql-server/root_password password mypassword'
-sudo debconf-set-selections <<< 'mysql-server mysql-server/root_password_again password mypassword'
-sudo apt-get -y install mysql-server
-sudo apt-get -y install libmysql-java
+if [ "$install_hive" = true ]; then
+    # Install MySQL Metastore for Hive - do this after creating profiles in order to use hive schematool
+    sudo apt-get -y update
+    sudo debconf-set-selections <<< 'mysql-server mysql-server/root_password password mypassword'
+    sudo debconf-set-selections <<< 'mysql-server mysql-server/root_password_again password mypassword'
+    sudo apt-get -y install mysql-server
+    sudo apt-get -y install libmysql-java
 
-sudo ln -sfn /usr/share/java/mysql-connector-java.jar /opt/hive/lib/mysql-connector-java.jar
+    # Configure Hive Metastore
+    mysql -u root --password="mypassword" -f \
+    -e "DROP DATABASE IF EXISTS metastore;"
 
-# Configure Hive Metastore
-mysql -u root --password="mypassword" -f \
--e "DROP DATABASE IF EXISTS metastore;"
+    mysql -u root --password="mypassword" -f \
+    -e "CREATE DATABASE IF NOT EXISTS metastore;"
 
-mysql -u root --password="mypassword" -f \
--e "CREATE DATABASE IF NOT EXISTS metastore;"
+    mysql -u root --password="mypassword" \
+    -e "GRANT ALL PRIVILEGES ON metastore.* TO 'hive'@'localhost' IDENTIFIED BY 'mypassword'; FLUSH PRIVILEGES;"
 
-mysql -u root --password="mypassword" \
--e "GRANT ALL PRIVILEGES ON metastore.* TO 'hive'@'localhost' IDENTIFIED BY 'mypassword'; FLUSH PRIVILEGES;"
-
-schematool -dbType mysql -initSchema
+    ln -sfn /usr/share/java/mysql-connector-java.jar /opt/hive2/lib/mysql-connector-java.jar
+    ln -sfn /usr/share/java/mysql-connector-java.jar /opt/hive/lib/mysql-connector-java.jar
+    
+    cp /mnt/etc/hive2/* /opt/hive2/conf/
+    cp /mnt/etc/hive/* /opt/hive/conf/
+    chown -R vagrant:vagrant /opt/hive/conf/*
+    chown -R vagrant:vagrant /opt/hive2/conf/*
+    
+    /opt/hive2/bin/schematool -dbType mysql -initSchema
+    echo "Init. schema using hive version 2"
+fi
 
 echo "Creating keys for passwordless ssh"
-echo -e  'y' | ssh-keygen -t rsa -f ~/.ssh/id_rsa -q -P ''
-cat ~/.ssh/id_rsa.pub >> ~/.ssh/authorized_keys
+echo -e  'y' | ssh-keygen -t rsa -f /home/vagrant/.ssh/id_rsa -q -P ''
+chmod 777 ~/.ssh/authorized_keys
+cat /home/vagrant/.ssh/id_rsa.pub >> /home/vagrant/.ssh/authorized_keys
 chmod 600 ~/.ssh/authorized_keys
 
-echo "***************************************************************************************"
-echo "* Lab Virtual Machine Setup Completed.                                                 *"
-echo "* SSH address:127.0.0.1:2222.                                                          *"
-echo "* SSH username/password:vagrant/vagrant                                                *"
-echo "* Command: ssh vagrant@localhost -p 2222                                               *"
-echo "***************************************************************************************"
+ENDTIME=$(date +%s)
+echo "======================================================================>"
+echo "=> The Lab Virtual Machine setup has completed in $((($ENDTIME - $STARTTIME)/60)) minutes $((($ENDTIME - $STARTTIME)%60)) seconds."
+echo "=> SSH Command : ssh vagrant@localhost -p 2222"
+echo "=> SSH Password: vagrant"
+echo "======================================================================>"

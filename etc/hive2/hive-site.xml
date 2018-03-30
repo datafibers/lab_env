@@ -37,19 +37,19 @@
 
   <property>
     <name>hive.server2.thrift.port</name>
-    <value>10000</value>
+    <value>10500</value>
     <description>Overwrite default hiveserver2 port for hive2</description>
   </property>
   
   <property>
     <name>hive.metastore.uris</name>
-    <value>thrift://localhost:9083</value>
-    <description>default metastore port</description>
+    <value>thrift://localhost:9085</value>
+    <description>IP address (or fully-qualified domain name) and port of the metastore host</description>
   </property>
 
   <property>
     <name>hive.metastore.port</name>
-    <value>9083</value>
+    <value>9085</value>
   </property>
   
   <property>

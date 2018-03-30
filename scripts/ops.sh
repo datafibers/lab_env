@@ -66,8 +66,10 @@ HADOOP_NN_DAEMON_NAME=NameNode
 HADOOP_DN_DAEMON_NAME=DataNode
 YARN_RM_DAEMON_NAME=ResourceManager
 YARN_NM_DAEMON_NAME=NodeManager
-HIVE_SERVER_DAEMON_NAME=hiveserver2
-HIVE_METADATA_NAME=HiveMetaStore
+HIVE_SERVER_DAEMON_NAME=hive/.*HiveServer2
+HIVE_METADATA_NAME=hive/.*HiveMetaStore
+HIVE2_SERVER_DAEMON_NAME=hive2/.*HiveServer2
+HIVE2_METADATA_NAME=hive2/.*HiveMetaStore
 
 echo "****************Starting Operations****************"
 
@@ -283,13 +285,22 @@ else
 	echo "[WARN] Apache Hadoop Not Found"
 fi
 if [ -h ${DF_APP_DEP}/hive ]; then
-	hive --service metastore 1>> ${DF_APP_LOG}/metastore.log 2>> ${DF_APP_LOG}/metastore.log &
+	${DF_APP_DEP}/hive/bin/hive --service metastore 1>> ${DF_APP_LOG}/metastore.log 2>> ${DF_APP_LOG}/metastore.log &
 	echo "[INFO] Started [Apache Hive Metastore]"
-	hive --service hiveserver2 1>> ${DF_APP_LOG}/hiveserver2.log 2>> ${DF_APP_LOG}/hiveserver2.log &
+	${DF_APP_DEP}/hive/bin/hive --service hiveserver2 1>> ${DF_APP_LOG}/hiveserver2.log 2>> ${DF_APP_LOG}/hiveserver2.log &
 	echo "[INFO] Started [Apache Hive Server2]"
 	sleep 3
 else
 	echo "[WARN] Apache Hive Not Found"
+fi
+if [ -h ${DF_APP_DEP}/hive2 ]; then
+	${DF_APP_DEP}/hive2/bin/hive --service metastore 1>> ${DF_APP_LOG}/metastore_h2.log 2>> ${DF_APP_LOG}/metastore_h2.log &
+	echo "[INFO] Started [Apache Hive2 Metastore]"
+	${DF_APP_DEP}/hive2/bin/hive --service hiveserver2 1>> ${DF_APP_LOG}/hiveserver2_h2.log 2>> ${DF_APP_LOG}/hiveserver2_h2.log &
+	echo "[INFO] Started [Apache Hive2 Server2]"
+	sleep 3
+else
+	echo "[WARN] Apache Hive2 Not Found"
 fi
 }
 
@@ -297,13 +308,21 @@ stop_hadoop () {
 echo "[INFO] Shutdown [Apache Hadoop]"
 stop-yarn.sh
 stop-dfs.sh
-sid=$(getSID hivemetastore)
+sid=$(getSID ${HIVE_METADATA_NAME})
 kill -9 ${sid} 2> /dev/null
 echo "[INFO] Shutdown [Apache Hive MetaStore]"
 sleep 2
-sid=$(getSID hiveserver2)
+sid=$(getSID ${HIVE2_METADATA_NAME})
+kill -9 ${sid} 2> /dev/null
+echo "[INFO] Shutdown [Apache Hive2 MetaStore]"
+sleep 2
+sid=$(getSID ${HIVE_SERVER_DAEMON_NAME})
 kill -9 ${sid} 2> /dev/null
 echo "[INFO] Shutdown [Apache Hive Server2]"
+sleep 2
+sid=$(getSID ${HIVE2_SERVER_DAEMON_NAME})
+kill -9 ${sid} 2> /dev/null
+echo "[INFO] Shutdown [Apache Hive2 Server2]"
 }
 
 getSID() {
@@ -446,6 +465,8 @@ status_all () {
     status ${YARN_NM_DAEMON_NAME} Yarn_NodeMgr
     status ${HIVE_SERVER_DAEMON_NAME} HiveServer2
     status ${HIVE_METADATA_NAME} HiveMetaStore
+    status ${HIVE2_SERVER_DAEMON_NAME} Hive2Server2
+    status ${HIVE2_METADATA_NAME} Hive2MetaStore   
 }
 
 if [ "${action}" = "start" ] ; then
