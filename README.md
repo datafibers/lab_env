@@ -90,3 +90,10 @@ vagrant resume
 ```
 vagrant reload
 ```
+## Known Issues
+1. If the start up requires password, please do following setting.
+```
+ssh-keygen -t rsa -P ''
+cat ~/.ssh/id_rsa.pub >> ~/.ssh/authorized_keys
+chmod 600 ~/.ssh/authorized_keys
+```
