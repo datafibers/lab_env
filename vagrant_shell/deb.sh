@@ -217,6 +217,8 @@ if [ "$install_hive" = true ]; then
     
     cp /mnt/etc/hive2/* /opt/hive2/conf/
     cp /mnt/etc/hive/* /opt/hive/conf/
+    chown -R vagrant:vagrant /opt/hive/conf/*
+    chown -R vagrant:vagrant /opt/hive2/conf/*
     
     /opt/hive2/bin/schematool -dbType mysql -initSchema
     echo "Init. schema using hive version 2"
