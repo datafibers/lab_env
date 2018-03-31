@@ -25,7 +25,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.vm.network "forwarded_port", guest: 8082, host: 8082   #Kafka REST 
   config.vm.network "forwarded_port", guest: 8083, host: 8083   #Kafka Connect REST
   config.vm.network "forwarded_port", guest: 8998, host: 8998   #Livy
-  config.vm.network "forwarded_port", guest: 9092, host: 9080   #Spark Master Web UI 
+  config.vm.network "forwarded_port", guest: 9080, host: 9080   #Spark Master Web UI 
   config.vm.network "forwarded_port", guest: 9092, host: 9092   #Kafka  
   config.vm.network "forwarded_port", guest: 9200, host: 9200   #Elastic
   config.vm.network "forwarded_port", guest: 27017, host: 27017 #MongoDB
