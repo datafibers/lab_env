@@ -29,7 +29,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.vm.network "forwarded_port", guest: 9092, host: 9092   #Kafka  
   config.vm.network "forwarded_port", guest: 9200, host: 9200   #Elastic
   config.vm.network "forwarded_port", guest: 27017, host: 27017 #MongoDB
-  config.vm.network "forwarded_port", guest: 60010, host: 60010 #HBase Master Web UI
+  config.vm.network "forwarded_port", guest: 16010, host: 16010 #HBase Master Web UI
 
   config.vm.provider "virtualbox" do |vb|
     vb.customize ["modifyvm", :id, "--memory", "4096"]
