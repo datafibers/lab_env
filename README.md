@@ -22,7 +22,7 @@ This distribution is compatible with [HDP 2.6.4](https://docs.hortonworks.com/HD
 1. After installed, you'll need to run ```ops format``` to format hadoop for the very first time.
 1. To update ```cd lan_env && git pull && vagrant provision```
 
-## Operation Command Reference (in VM)
+## Operation Command Reference (Run inside VM)
 * Enter ```ops``` to get full command help
 * Enter ```ops start all``` to start all service
 * Enter ```ops status``` to check status as follows
@@ -51,7 +51,7 @@ vagrant@vagrant:~$ ops status
 [INFO]   [Hive2MetaStore]     is running at [2955]
 ```
 
-## Tool Command Reference (in VM)
+## Tool Command Reference (Run inside VM)
 * Enter ```mongo``` to connect to mongodb
 * Enter ```mysql -u root --password="mypassword"``` to connect to mysql
 * Enter ```beeline -u jdbc:hive2://localhost:10000/``` to connect to hive1
@@ -66,33 +66,18 @@ vagrant@vagrant:~$ ops status
 * Browse http://localhost:3000 to use grafana
 * Browse http://localhost:16010 to check HBase Master
 
-## Vagrant Command Reference (outside VM)
-* Start the vm/image install
-```
-vagrant up
-```
-* Stop the vm
-```
-vagrant halt
-```
-* Update the vm
-```
-git pull && vagrant provision
-```
-* Suspend the vm
-```
-vagrant suspend
-```
-* Wake up the vm
-```
-vagrant resume
-```
-* Restart the vm
-```
-vagrant reload
-```
+## Vagrant Command Reference (Run outside VM)
+| Purpose                    | Command         | 
+| -------------------------- |-----------------| 
+| Start the vm/image install | ```vagrant up```|
+| Stop the vm                | ```vagrant halt```|
+| Update the vm              | ```git pull && vagrant provision``` |
+| Suspend the vm/hibernate   | ```vagrant suspend```|
+| Wake up the vm             | ```vagrant resume```|
+| Restart the vm             | ```vagrant reload```|
+
 ## Known Issues
-1. If the start up requires password, please do following setting.
+* If the start up requires password, please do following setting.
 ```
 ssh-keygen -t rsa -P ''
 cat ~/.ssh/id_rsa.pub >> ~/.ssh/authorized_keys
