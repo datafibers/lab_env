@@ -1,11 +1,11 @@
 #!/bin/bash
 set -e
-#you can update to use mirror site when overflow traffic limit, such as 
+# You can find (https://www.apache.org/dyn/closer.cgi) and update to use fastest mirror site when overflow traffic limit, such as 
 # archive.apache.org/dist
 # mirror.its.dal.ca/apache
 # muug.ca/mirror/apache-dist
 
-root_site=mirror.its.dal.ca/apache 
+root_site=archive.apache.org/dist 
 
 #software repository links
 dl_link_java=http://download.oracle.com/otn-pub/java/jdk/8u161-b12/2f38c3b165be4555a1fa6e98c45e0808/jdk-8u161-linux-x64.tar.gz
