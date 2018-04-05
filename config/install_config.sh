@@ -4,6 +4,7 @@ set -e
 install_java=true #install oracle java 8
 
 install_hadoop=true
+install_tez=true
 install_hive=true #this is to install both hive 1 and 2. Default is hive 2
 
 install_confluent=true
