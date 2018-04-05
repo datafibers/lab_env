@@ -27,9 +27,13 @@ export JAVA_HOME="/opt/jdk"
 export HADOOP_USER_CLASSPATH_FIRST=true
 export HADOOP_CONF_DIR="/mnt/etc/hadoop"
 export HADOOP_LOG_DIR="/mnt/logs"
-# export HIVE_CONF_DIR="/mnt/etc/hive2"
 export HADOOP_HOME="/opt/hadoop"
+# export HIVE_CONF_DIR="/mnt/etc/hive2"
 # export HIVE_HOME="/opt/hive2" # in order to run two version of hive, have to comment it out and use in hive-env.sh since setting her has the highest privilige
+export TEZ_CONF_DIR=/opt/tez/conf
+export TEZ_JARS=/opt/tez/*:/opt/tez/lib/*
+export HADOOP_CLASSPATH=$TEZ_CONF_DIR:$TEZ_JARS:$HADOOP_CLASSPATH
+
 export CONFLUENT_HOME="/opt/confluent"
 export FLINK_HOME="/opt/flink"
 export SPARK_HOME="/opt/spark"
