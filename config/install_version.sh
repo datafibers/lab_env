@@ -13,6 +13,9 @@ dl_link_java=http://download.oracle.com/otn-pub/java/jdk/8u161-b12/2f38c3b165be4
 file_name_hadoop=hadoop-2.7.5.tar.gz
 dl_link_hadoop=https://${root_site}/hadoop/common/hadoop-2.7.5/hadoop-2.7.5.tar.gz
 
+file_name_tez=tez-0.9.1-bin.tar.gz
+dl_link_tez=http://${root_site}/tez/0.9.1/apache-tez-0.9.1-bin.tar.gz
+
 file_name_hive=hive-1.2.2.tar.gz
 dl_link_hive=https://${root_site}/hive/hive-1.2.2/apache-hive-1.2.2-bin.tar.gz
 
