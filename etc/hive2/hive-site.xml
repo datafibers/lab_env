@@ -56,4 +56,10 @@
     <name>hive.metastore.schema.verification</name>
     <value>false</value>
   </property>
+  
+  <property>
+  <name>hive.execution.engine</name>
+  <value>tez</value>
+  </property>
+  
 </configuration>
