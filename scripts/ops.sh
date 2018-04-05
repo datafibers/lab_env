@@ -48,8 +48,10 @@ service=${2:-default}
 
 DF_APP_MNT=/mnt
 DF_APP_DEP=/opt
+DF_APP_HDFS=/app
 DF_APP_CONFIG=${DF_APP_MNT}/etc
 DF_APP_LOG=${DF_APP_MNT}/logs
+
 
 KAFKA_DAEMON_NAME=SupportedKafka
 KAFKA_CONNECT_DAEMON_NAME=connectdistributed
@@ -284,6 +286,20 @@ if [ -h ${DF_APP_DEP}/hadoop ]; then
 else
 	echo "[WARN] Apache Hadoop Not Found"
 fi
+
+if [ -h ${DF_APP_DEP}/tez ]; then
+	TEZ_DIR=$DF_APP_HDFS/tez/share
+	if $(hdfs dfs -test -d $TEZ_DIR); then 
+	else
+		hdfs dfs -mkdir -p $TEZ_DIR
+		hdfs dfs -put ${DF_APP_DEP}/tez*.gz $TEZ_DIR/
+		hdfs dfs -mv $TEZ_DIR/tez*.gz $TEZ_DIR/tez.tar.gz
+		echo "[INFO] Copied TEZ Lib to HDFS"
+	fi
+else
+	echo "[WARN] Apache TEZ Not Found"
+fi
+
 if [ -h ${DF_APP_DEP}/hive ]; then
 	${DF_APP_DEP}/hive/bin/hive --service metastore 1>> ${DF_APP_LOG}/metastore.log 2>> ${DF_APP_LOG}/metastore.log &
 	echo "[INFO] Started [Apache Hive Metastore]"
@@ -361,6 +377,8 @@ elif [ "${service}" = "all" ]; then
 elif [ "${service}" = "default" ]; then
 	start_hadoop
 	start_zeppelin
+elif [ "${service}" = "hive" ]; then
+	start_hadoop	
 elif [ "${service}" = "spark" ]; then
 	start_hadoop
 	start_spark
@@ -378,29 +396,31 @@ elif [ "${service:0:4}" = "mask" ]; then
 
 	if [ "${service:4:1}" == "1" ]; then
 	    start_hadoop
-	    start_zeppelin
 	fi
 	if [ "${service:5:1}" == "1" ]; then
+	    start_zeppelin
+	fi	
+	if [ "${service:6:1}" == "1" ]; then
 	    start_confluent
 	fi
-	if [ "${service:6:1}" == "1" ]; then
+	if [ "${service:7:1}" == "1" ]; then
 	    start_flink
 	fi
-	if [ "${service:7:1}" == "1" ]; then
+	if [ "${service:8:1}" == "1" ]; then
 	    start_spark
 	fi
-	if [ "${service:8:1}" == "1" ]; then
+	if [ "${service:9:1}" == "1" ]; then
 	    start_hbase
 	fi
-	if [ "${service:9:1}" == "1" ]; then
+	if [ "${service:10:1}" == "1" ]; then
 	    start_zookeeper
 	fi
 
 	if [ "${service}" = "mask" ]; then
 	    echo "[ERROR] No proper mask is specified."
 	    echo "[INFO] Labops start masking setting uses 1 to enable and 0 to disable the service to start"
-	    echo "[INFO] 6 bit masking represents service like hadoop (hive) and zeppelin, kafka (schema registry), flink, spark, hbase"
-	    echo "[INFO] For example, 'dfops start mask100100' only start hadoop (hive) and spark service"
+	    echo "[INFO] 7 bit masking represents service like hadoop (hive), zeppelin, kafka (schema registry), flink, spark, hbase, zookeeper"
+	    echo "[INFO] For example, 'dfops start mask1001000' only start hadoop (hive) and spark service"
 	fi
 else
 	echo "[ERROR] No service will start because of wrong command."
@@ -416,8 +436,10 @@ if [ "${service}" = "kafka" ]; then
 elif [ "${service}" = "default" ]; then
 	stop_hadoop
 	stop_zeppelin
+elif [ "${service}" = "hive" ]; then
+	stop_hadoop	
 elif [ "${service}" = "all" ]; then
-        stop_spark
+    stop_spark
 	stop_flink
 	stop_hbase
 	stop_zookeeper
