@@ -289,7 +289,8 @@ fi
 
 if [ -h ${DF_APP_DEP}/tez ]; then
 	TEZ_DIR=$DF_APP_HDFS/tez/share
-	if [ $(hdfs dfs -test -d $TEZ_DIR) != 0 ]; then 
+	hdfs dfs -test -d $TEZ_DIR
+	if [ $? != 0 ]; then 
 		hdfs dfs -mkdir -p $TEZ_DIR
 		hdfs dfs -put ${DF_APP_DEP}/tez*.gz $TEZ_DIR/
 		hdfs dfs -mv $TEZ_DIR/tez*.gz $TEZ_DIR/tez.tar.gz
