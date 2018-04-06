@@ -75,6 +75,10 @@ sudo apt-get -y install aria2
 echo "install - hdp"
 soft_install $install_hadoop hadoop $dl_link_hadoop $file_name_hadoop
 
+# Install and configure Apache Tez
+echo "install - tez"
+soft_install $install_tez tez $dl_link_tez $file_name_tez
+
 # Install and configure Hive
 soft_install $install_hive hive $dl_link_hive $file_name_hive
 
@@ -167,6 +171,10 @@ sudo chown -R vagrant:vagrant /opt
 if [ "$install_flink" = true ]; then
   mv /opt/flink/conf/flink-conf.yaml /opt/flink/conf/flink-conf.yaml.bk
   cp /mnt/etc/flink/flink-conf.yaml /opt/flink/conf/
+fi
+
+if [ "$install_tez" = true ]; then
+  cp /mnt/etc/tez/* /opt/tez/conf/
 fi
 
 if [ "$install_mongo" = true ]; then
