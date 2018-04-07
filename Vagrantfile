@@ -24,6 +24,8 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.vm.network "forwarded_port", guest: 8081, host: 8002   #Flink/Kafka Schema Registry
   config.vm.network "forwarded_port", guest: 8082, host: 8082   #Kafka REST 
   config.vm.network "forwarded_port", guest: 8083, host: 8083   #Kafka Connect REST
+  config.vm.network "forwarded_port", guest: 8042, host: 8042   #Yarn node manager
+  config.vm.network "forwarded_port", guest: 8088, host: 8088   #Yarn application master
   config.vm.network "forwarded_port", guest: 8998, host: 8998   #Livy
   config.vm.network "forwarded_port", guest: 9080, host: 9080   #Spark Master Web UI 
   config.vm.network "forwarded_port", guest: 9092, host: 9092   #Kafka  
