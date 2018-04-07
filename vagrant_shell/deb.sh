@@ -229,10 +229,9 @@ if [ "$install_hive" = true ]; then
 fi
 
 echo "Creating keys for passwordless ssh"
-sudo su vagrant
-echo -e  'y' | ssh-keygen -t rsa -f ~/.ssh/id_rsa -q -P ''
-chmod 777 ~/.ssh/authorized_keys
-cat ~/.ssh/id_rsa.pub >> ~/.ssh/authorized_keys
+echo -e  'y' | ssh-keygen -t rsa -f /home/vagrant/.ssh/id_rsa -q -P ''
+chmod 777 /home/vagrant/.ssh/authorized_keys
+cat /home/vagrant/.ssh/id_rsa.pub >> /home/vagrant/.ssh/authorized_keys
 chmod 600 ~/.ssh/authorized_keys
 
 ENDTIME=$(date +%s)
