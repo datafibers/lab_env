@@ -65,6 +65,8 @@ vagrant@vagrant:~$ ops status
 * Browse http://localhost:8080 to use zeppelin
 * Browse http://localhost:8001 to use flink web console
 * Browse http://localhost:3000 to use grafana
+* Browse http://localhost:8088 to check Yarn Application Master
+* Browse http://localhost:8042 to check Yarn Node Manager
 * Browse http://localhost:16010 to check HBase Master
 
 ## Vagrant Command Reference (Run outside VM)
