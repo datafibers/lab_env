@@ -1,5 +1,5 @@
 # Overview
-This is very lightweighted vagrant image for Hadoop big data lab. The total memory needed is only 4G (450M left after all service are started). It will take around 15 minutes to download and setup.
+This is very lightweighted vagrant image for Hadoop big data lab. The total memory needed is only 5G (450M left after all service are started). It will take around 15 minutes to download and setup.
 
 ## Soft Installed
 This distribution is compatible with [HDP 2.6.4](https://docs.hortonworks.com/HDPDocuments/HDP2/HDP-2.6.4/bk_release-notes/content/comp_versions.html), besides upgrade hive and hadoop to stable version.
