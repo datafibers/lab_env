@@ -39,7 +39,7 @@ function soft_install
             if [ ! -e $file_name ]; then
                 # wget --progress=bar:force -O $file_name $dl_link --no-check-certificate
                 echo "Please wait, downloading ..."
-                aria2c -x5 $dl_link -o $file_name
+                aria2c -x2 $dl_link -o $file_name
             fi
             cd /opt/
             mkdir -p $install_folder && tar xf /tmp/vagrant-downloads/$file_name -C $install_folder
