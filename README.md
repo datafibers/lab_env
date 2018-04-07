@@ -11,7 +11,6 @@ This distribution is compatible with [HDP 2.6.4](https://docs.hortonworks.com/HD
 | hive-2.3.2    | confluent-3.3.0 |                | maven   |
 | hbase-1.2.2   |                 |                | dos2unix|
 | phoenix-4.13.2|                 |                | aria2   |
-| tez-0.9.1     |                 |                |         |
 
 ## Quick Setup
 1. Install [Oracle VirtualBox](https://www.virtualbox.org/wiki/Downloads)
