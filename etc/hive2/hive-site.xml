@@ -57,9 +57,4 @@
     <value>false</value>
   </property>
   
-  <property>
-  <name>hive.execution.engine</name>
-  <value>tez</value>
-  </property>
-  
 </configuration>
