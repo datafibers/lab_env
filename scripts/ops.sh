@@ -294,8 +294,7 @@ if [ -h ${DF_APP_DEP}/tez ]; then
 		echo "[INFO] No Tez folder found, create it..."
 		sleep 5
 		hdfs dfs -mkdir -p $TEZ_DIR
-		hdfs dfs -put ${DF_APP_DEP}/tez*.gz $TEZ_DIR/
-		hdfs dfs -mv $TEZ_DIR/tez*.gz $TEZ_DIR/tez.tar.gz
+		hdfs dfs -put ${DF_APP_DEP}/tez/share/tez.tar.gz $TEZ_DIR/
 		echo "[INFO] Copied TEZ Lib to HDFS"
 	fi
 else
