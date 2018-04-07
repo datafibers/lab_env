@@ -175,6 +175,9 @@ fi
 
 if [ "$install_tez" = true ]; then
   cp /mnt/etc/tez/* /opt/tez/conf/
+  if [ ! -e $file_name_tez ]; then
+    cp /tmp/vagrant-downloads/$file_name_tez /opt/
+  fi
 fi
 
 if [ "$install_mongo" = true ]; then
