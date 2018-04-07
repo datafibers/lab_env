@@ -232,7 +232,7 @@ echo "Creating keys for passwordless ssh"
 echo -e  'y' | ssh-keygen -t rsa -f /home/vagrant/.ssh/id_rsa -q -P ''
 chmod 777 /home/vagrant/.ssh/authorized_keys
 cat /home/vagrant/.ssh/id_rsa.pub >> /home/vagrant/.ssh/authorized_keys
-chmod 600 ~/.ssh/authorized_keys
+chmod 600 /home/vagrant/.ssh/authorized_keys
 
 ENDTIME=$(date +%s)
 echo "======================================================================>"
