@@ -78,6 +78,9 @@ vagrant@vagrant:~$ ops status
 | Wake up the vm             | ```vagrant resume```|
 | Restart the vm             | ```vagrant reload```|
 
+## Install Customization
+1. To give VM more memory, you can either modify this [line](https://github.com/datafibers/lab_env/blob/7fba70268a218abb4fbfa5096958caad7df80355/Vagrantfile#L370) before install or adjust memory setting in virtualbox once install is done.
+
 ## Known Issues
 * If the start up requires password, please do following setting.
 ```
