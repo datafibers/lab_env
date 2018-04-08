@@ -39,7 +39,7 @@ function soft_install
             if [ ! -e $file_name ]; then
                 # wget --progress=bar:force -O $file_name $dl_link --no-check-certificate
                 echo "Please wait, downloading ..."
-                aria2c -x2 $dl_link -o $file_name
+                aria2c -x5 $dl_link -o $file_name
             fi
             cd /opt/
             mkdir -p $install_folder && tar xf /tmp/vagrant-downloads/$file_name -C $install_folder
@@ -131,7 +131,7 @@ if [ "$JAVA_VER" != "8" ] && [ "$install_java" = "true" ]; then
     echo "installing java 8 ..."
     cd /opt/
     # wget --no-check-certificate --header "Cookie: oraclelicense=accept-securebackup-cookie" $dl_link_java
-    aria2c -x2 --header="Cookie: oraclelicense=accept-securebackup-cookie" $dl_link_java
+    aria2c -x5 --header="Cookie: oraclelicense=accept-securebackup-cookie" $dl_link_java
     tar -zxf jdk-8u161-linux-x64.tar.gz
     ln -sfn /opt/jdk1.8.0_161 /opt/jdk
     sudo update-alternatives --install /usr/bin/java java /opt/jdk/bin/java 8000
