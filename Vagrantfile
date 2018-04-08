@@ -34,7 +34,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.vm.network "forwarded_port", guest: 16010, host: 16010 #HBase Master Web UI
 
   config.vm.provider "virtualbox" do |vb|
-    vb.customize ["modifyvm", :id, "--memory", "5120"]
+    vb.customize ["modifyvm", :id, "--memory", "4096"]
     vb.name = "BIG_DATA_LAB"
   end
 
