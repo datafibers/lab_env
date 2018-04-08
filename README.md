@@ -1,5 +1,5 @@
 # Overview
-This is very lightweighted vagrant image for Hadoop big data lab. The total memory needed is only 5G (450M left after all service are started). It will take around 15 minutes to download and setup.
+This is very lightweighted vagrant image for Hadoop big data lab. The total memory needed is only 4G (450M left after all service are started). It will take around 15 minutes to download and setup.
 
 ## Soft Installed
 This distribution is compatible with [HDP 2.6.4](https://docs.hortonworks.com/HDPDocuments/HDP2/HDP-2.6.4/bk_release-notes/content/comp_versions.html), besides upgrade hive and hadoop to stable version.
@@ -17,7 +17,7 @@ This distribution is compatible with [HDP 2.6.4](https://docs.hortonworks.com/HD
 1. Install [Vagrant](https://www.vagrantup.com/downloads.html)
 1. Go to a proper folder and git clone this repository ```git clone https://github.com/datafibers/lab_env.git```
 1. If you prefer to install specific configuration from [branch](https://github.com/datafibers/lab_env/branches), ```git checkout <branch_name>```
-1. If you prefer to customize install config, you can modify [conf/install_config.sh](https://github.com/datafibers/lab_env/blob/master/config/install_config.sh) or [install_version.sh](https://github.com/datafibers/lab_env/blob/master/config/install_version.sh)
+1. If you prefer to customize install config, you can modify [conf/install_config.sh](https://github.com/datafibers/lab_env/blob/master/config/install_config.sh) or [install_version.sh](https://github.com/datafibers/lab_env/blob/master/config/install_version.sh) or [this section](https://github.com/datafibers/lab_env/blob/master/README.md#customization).
 1. To install ```cd lab_env && vagrant up```
 1. After installed, you'll need to run ```ops format``` to format hadoop for the very first time.
 1. To update ```cd lan_env && git pull && vagrant provision```
@@ -79,7 +79,7 @@ vagrant@vagrant:~$ ops status
 | Restart the vm             | ```vagrant reload```|
 
 ## Customization
-＊ Customize VM memory, either modify this [line](https://github.com/datafibers/lab_env/blob/7fba70268a218abb4fbfa5096958caad7df80355/Vagrantfile#L370) before install or adjust memory setting in virtualbox once install is done.
+* Customize VM memory, either modify this [line](https://github.com/datafibers/lab_env/blob/7fba70268a218abb4fbfa5096958caad7df80355/Vagrantfile#L370) before install or adjust memory setting in virtualbox once install is done.
 
 ## Known Issues
 * If the start up requires password, please do following setting.
