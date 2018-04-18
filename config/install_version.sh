@@ -22,8 +22,10 @@ dl_link_hive=${apache_root_site}/hive/hive-1.2.2/apache-hive-1.2.2-bin.tar.gz
 file_name_hive2=hive-2.3.2.tar.gz
 dl_link_hive2=${apache_root_site}/hive/hive-2.3.2/apache-hive-2.3.2-bin.tar.gz
 
-file_name_confluent=confluent-3.3.0.tar.gz
-dl_link_confluent=http://packages.confluent.io/archive/3.3/confluent-oss-3.3.0-2.11.tar.gz
+#file_name_confluent=confluent-3.3.0.tar.gz
+#dl_link_confluent=http://packages.confluent.io/archive/3.3/confluent-oss-3.3.0-2.11.tar.gz
+file_name_confluent=confluent-4.1.0.tar.gz
+dl_link_confluent=http://packages.confluent.io/archive/4.1/confluent-oss-4.1.0-2.11.tar.gz
 
 file_name_flink=flink-1.3.2.tgz
 dl_link_flink=${apache_root_site}/flink/flink-1.3.2/flink-1.3.2-bin-hadoop26-scala_2.11.tgz
