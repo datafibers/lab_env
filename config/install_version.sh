@@ -10,8 +10,8 @@ apache_root_site=$(curl -s -L https://www.apache.org/dyn/closer.cgi|grep -B 1 'O
 #software repository links
 dl_link_java=http://download.oracle.com/otn-pub/java/jdk/8u161-b12/2f38c3b165be4555a1fa6e98c45e0808/jdk-8u161-linux-x64.tar.gz
 
-file_name_hadoop=hadoop-2.7.5.tar.gz
-dl_link_hadoop=${apache_root_site}/hadoop/common/hadoop-2.7.5/hadoop-2.7.5.tar.gz
+file_name_hadoop=hadoop-2.7.6.tar.gz
+dl_link_hadoop=${apache_root_site}/hadoop/common/hadoop-2.7.6/hadoop-2.7.6.tar.gz
 
 file_name_tez=tez-0.9.1-bin.tar.gz
 dl_link_tez=${apache_root_site}/tez/0.9.1/apache-tez-0.9.1-bin.tar.gz
