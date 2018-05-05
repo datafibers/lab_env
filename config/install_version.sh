@@ -20,7 +20,7 @@ file_name_hive=hive-1.2.2.tar.gz
 dl_link_hive=${apache_root_site}/hive/hive-1.2.2/apache-hive-1.2.2-bin.tar.gz
 
 file_name_hive2=hive-2.3.3.tar.gz
-dl_link_hive2=${apache_root_site}/hive/hive-2.3.2/apache-hive-2.3.3-bin.tar.gz
+dl_link_hive2=${apache_root_site}/hive/hive-2.3.3/apache-hive-2.3.3-bin.tar.gz
 
 #file_name_confluent=confluent-3.3.0.tar.gz
 #dl_link_confluent=http://packages.confluent.io/archive/3.3/confluent-oss-3.3.0-2.11.tar.gz
