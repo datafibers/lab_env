@@ -22,6 +22,7 @@ function soft_install
 			(*.tar.gz) install_folder=/opt/`basename $file_name .tar.gz`;;
 			(*.tar) install_folder=/opt/`basename $file_name .tar`;;
 			(*.tgz) install_folder=/opt/`basename $file_name .tgz`;;
+			(*.zip) install_folder=/opt/`basename $file_name .zip`;;
 		esac
 		
 		echo "install_flag=$install_flag"
@@ -30,27 +31,33 @@ function soft_install
 		echo "install_folder=$install_folder"
 		echo "install_soft_link=$install_soft_link"
 
-        if [ ! -e $install_folder ]; then
-	    if [ ! -d /tmp/vagrant-downloads ]; then
-               mkdir -p /tmp/vagrant-downloads
-               sudo chmod a+rw /tmp/vagrant-downloads
-	    fi
-            cd /tmp/vagrant-downloads
-            if [ ! -e $file_name ]; then
-                # wget --progress=bar:force -O $file_name $dl_link --no-check-certificate
-                echo "Please wait, downloading ..."
-                aria2c -x5 $dl_link -o $file_name
-            fi
-            cd /opt/
-            mkdir -p $install_folder && tar xf /tmp/vagrant-downloads/$file_name -C $install_folder
-            ln -sfn $install_folder $install_soft_link
-	    cd $install_soft_link
-		# Following 3 steps mv all stuff from subfolder to upper folder and delete it
-		mv * delete
-		mv */* .
-		rm -rf delete
-        fi
-		echo "completed installing ${2} with version ${file_name}"
+		if [ ! -e $install_folder ]; then
+		    if [ ! -d /tmp/vagrant-downloads ]; then
+		       mkdir -p /tmp/vagrant-downloads
+		       sudo chmod a+rw /tmp/vagrant-downloads
+		    fi
+		    cd /tmp/vagrant-downloads
+		    if [ ! -e $file_name ]; then
+			# wget --progress=bar:force -O $file_name $dl_link --no-check-certificate
+			echo "Please wait, downloading ..."
+			aria2c -x5 $dl_link -o $file_name
+		    fi
+		    cd /opt/
+		    mkdir -p $install_folder
+		    if [[ $file_name =~ \.zip$ ]]; then
+			unzip /tmp/vagrant-downloads/$file_name -d $install_folder  
+		    else
+			tar xf /tmp/vagrant-downloads/$file_name -C $install_folder
+			cd $install_soft_link
+			# Following 3 steps mv all stuff from subfolder to upper folder and delete it
+			mv * delete
+			mv */* .
+			rm -rf delete
+		    fi
+		    ln -sfn $install_folder $install_soft_link
+		fi
+	
+	echo "completed installing ${2} with version ${file_name}"
     fi
 }
 
@@ -68,8 +75,9 @@ fi
 chmod a+rwx /mnt
 
 sudo apt-get -y update
-# Install download tool
-sudo apt-get -y install aria2
+
+# Install all tools needed
+sudo apt-get install -y maven git vim dos2unix aria2 zip unzip
 
 # Install and configure Apache Hadoop
 echo "install - hdp"
@@ -138,10 +146,6 @@ if [ "$JAVA_VER" != "8" ] && [ "$install_java" = "true" ]; then
     sudo update-alternatives --install /usr/bin/java java /opt/jdk/bin/java 8000
     sudo update-alternatives --install /usr/bin/javac javac /opt/jdk/bin/javac 8000
 fi
-
-#Install Maven and Git
-sudo apt-get install -y maven git vim
-sudo apt-get install dos2unix
 
 # Convert all files to Linux in case git setting wrong in Win
 find /vagrant/ -type f -print0 | xargs -0 dos2unix --
