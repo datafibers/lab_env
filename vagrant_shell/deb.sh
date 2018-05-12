@@ -132,7 +132,8 @@ if [ "$JAVA_VER" != "8" ] && [ "$install_java" = "true" ]; then
     cd /opt/
     # wget --no-check-certificate --header "Cookie: oraclelicense=accept-securebackup-cookie" $dl_link_java
     aria2c -x5 --header="Cookie: oraclelicense=accept-securebackup-cookie" $dl_link_java
-    tar -zxf jdk-8u${jdk_version}-linux-x64.tar.gz
+    
+    tar -zxf ${java_file_name}
     ln -sfn /opt/jdk1.8.0_${jdk_version} /opt/jdk
     sudo update-alternatives --install /usr/bin/java java /opt/jdk/bin/java 8000
     sudo update-alternatives --install /usr/bin/javac javac /opt/jdk/bin/javac 8000
