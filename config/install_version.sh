@@ -50,5 +50,5 @@ dl_link_hbase=${apache_root_site}/hbase/stable/hbase-1.2.6-bin.tar.gz
 file_name_phoenix=phoenix-4.13.1.tar.gz
 dl_link_phoenix=${apache_root_site}/phoenix/apache-phoenix-4.13.1-HBase-1.2/bin/apache-phoenix-4.13.1-HBase-1.2-bin.tar.gz
 
-file_name_livy=livy-0.5.0.tar.gz
-dl_link_livy=https://github.com/datafibers-community/df_demo/releases/download/0.5.0/livy-0.5.0-incubating-bin.tar.gz
+file_name_livy=livy-0.5.0-incubating.zip
+dl_link_livy=${apache_root_site}/incubator/livy/0.5.0-incubating/livy-0.5.0-incubating-bin.zip
