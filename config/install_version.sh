@@ -5,7 +5,23 @@ set -e
 # mirror.its.dal.ca/apache
 # muug.ca/mirror/apache-dist
 # apache_apache_root_site=archive.apache.org/dist 
-apache_root_site=$(curl -s -L https://www.apache.org/dyn/closer.cgi|grep -B 1 'Other mirror sites'|grep -Eo '(http|https)://[^/"]+'|head -1)
+done=0
+while : ; do
+  res=$(curl -s -L https://www.apache.org/dyn/closer.cgi|grep -B 1 'Other mirror sites'|grep -Eo '(http|https)://[^/"]+'|head -1)
+
+  if [[ $res != *"apache"* ]]; then
+    res=$res/apache                          #if url does not contains apache add at the end
+  fi
+
+  res2=$(wget --spider $res/hadoop -nv 2>&1) #check if hadoop link in mirror
+  if [[ $res2 = *"OK"* ]]; then
+    apache_root_site=$res
+    echo "Found mirror $apache_root_site"
+    break
+  else
+    continue
+  fi
+done
 
 #software repository links
 jdk_version=171
