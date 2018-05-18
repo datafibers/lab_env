@@ -1,1 +1,1 @@
-script: ./config/testURL.sh
+script: travis_retry ./config/testURL.sh
