@@ -45,16 +45,18 @@ function soft_install
 		    cd /opt/
 		    mkdir -p $install_folder
 		    if [[ $file_name =~ \.zip$ ]]; then
-			unzip /tmp/vagrant-downloads/$file_name -d $install_folder  
+			unzip /tmp/vagrant-downloads/$file_name -d $install_folder 
+			ln -sfn $install_folder $install_soft_link
 		    else
 			tar xf /tmp/vagrant-downloads/$file_name -C $install_folder
+			ln -sfn $install_folder $install_soft_link
 			cd $install_soft_link
 			# Following 3 steps mv all stuff from subfolder to upper folder and delete it
 			mv * delete
 			mv */* .
 			rm -rf delete
 		    fi
-		    ln -sfn $install_folder $install_soft_link
+		    
 		fi
 	
 	echo "completed installing ${2} with version ${file_name}"
