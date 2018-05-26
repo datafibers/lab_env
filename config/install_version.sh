@@ -42,11 +42,11 @@ dl_link_hive2=${apache_root_site}/hive/hive-2.3.3/apache-hive-2.3.3-bin.tar.gz
 
 #file_name_confluent=confluent-3.3.0.tar.gz
 #dl_link_confluent=http://packages.confluent.io/archive/3.3/confluent-oss-3.3.0-2.11.tar.gz
-file_name_confluent=confluent-4.1.0.tar.gz
-dl_link_confluent=http://packages.confluent.io/archive/4.1/confluent-oss-4.1.0-2.11.tar.gz
+file_name_confluent=confluent-4.1.1.tar.gz
+dl_link_confluent=http://packages.confluent.io/archive/4.1/confluent-oss-4.1.1-2.11.tar.gz
 
-file_name_flink=flink-1.3.2.tgz
-dl_link_flink=${apache_root_site}/flink/flink-1.3.2/flink-1.3.2-bin-hadoop26-scala_2.11.tgz
+file_name_flink=flink-1.5.0.tgz
+dl_link_flink=${apache_root_site}/flink/flink-1.5.0/flink-1.5.0-bin-hadoop27-scala_2.11.tgz
 
 file_name_elastic=elastic-2.3.4.tar.gz
 dl_link_elastic=https://download.elastic.co/elasticsearch/release/org/elasticsearch/distribution/tar/elasticsearch/2.3.4/elasticsearch-2.3.4.tar.gz
@@ -54,8 +54,8 @@ dl_link_elastic=https://download.elastic.co/elasticsearch/release/org/elasticsea
 file_name_zeppelin=zeppelin-0.7.3.tgz
 dl_link_zeppelin=${apache_root_site}/zeppelin/zeppelin-0.7.3/zeppelin-0.7.3-bin-all.tgz
 
-file_name_grafana=grafana-5.0.3.tar.gz
-dl_link_grafana=https://s3-us-west-2.amazonaws.com/grafana-releases/release/grafana-5.0.3.linux-x64.tar.gz
+file_name_grafana=grafana-5.1.3.tar.gz
+dl_link_grafana=https://s3-us-west-2.amazonaws.com/grafana-releases/release/grafana-5.1.3.linux-x64.tar.gz 
 
 file_name_spark=spark-2.2.0.tgz
 dl_link_spark=${apache_root_site}/spark/spark-2.2.0/spark-2.2.0-bin-hadoop2.7.tgz
