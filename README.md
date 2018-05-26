@@ -90,7 +90,7 @@ cat ~/.ssh/id_rsa.pub >> ~/.ssh/authorized_keys
 chmod 600 ~/.ssh/authorized_keys
 ```
 * To re-associate the vagrant and virtualbox at [here](https://gist.github.com/datafibers/bd6aec4cfd3fcbbc68f5b6379c1ef2fd)
-* When vagrant provision has SSH authtication issues, add following in the Vagrantfile.
+* When vagrant provision has SSH authentication issues, add following in the Vagrantfile.
 ```
 config.ssh.username = "vagrant"  
 config.ssh.password = "vagrant"  
