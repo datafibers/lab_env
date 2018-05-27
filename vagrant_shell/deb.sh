@@ -70,6 +70,7 @@ fi
 chmod a+rw /tmp/vagrant-downloads
 
 chmod a+rw /opt
+mkdir -p /opt/lib
 
 if [ ! -e /mnt ]; then
     mkdir /mnt
