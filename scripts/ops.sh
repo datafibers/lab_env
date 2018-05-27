@@ -52,7 +52,7 @@ DF_APP_DEP=/opt
 DF_APP_HDFS=/app
 DF_APP_CONFIG=${DF_APP_MNT}/etc
 DF_APP_LOG=${DF_APP_MNT}/logs
-
+DF_APP_LIB=$DF_APP_DEP/lib
 
 KAFKA_DAEMON_NAME=SupportedKafka
 KAFKA_CONNECT_DAEMON_NAME=connectdistributed
@@ -107,6 +107,11 @@ if [ -h ${DF_APP_DEP}/confluent ]; then
 		echo "[WARN] Found Schema Registry daemon running. Please [stop] or [restart] it."
 	fi
 	echo "[INFO] Started [Schema Registry]"
+	
+	for jar in ${DF_APP_LIB}/*dependencies.jar; do
+	  CLASSPATH=${CLASSPATH}:${jar}
+	done
+	export CLASSPATH
 
 	sid=$(getSID ${KAFKA_CONNECT_DAEMON_NAME})
 	if [ -z "${sid}" ]; then
