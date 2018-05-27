@@ -22,6 +22,7 @@ usage () {
         printf "%-25s: %-50s\n" "flink" "Run hadoop/hive, zeppelin, flink"
         printf "%-25s: %-50s\n" "hbase" "Run hadoop/hive, zeppelin, hbase"
         printf "%-25s: %-50s\n" "kafka" "Run hadoop/hive, zeppelin, kafka"
+	printf "%-25s: %-50s\n" "mask" "Run customized service help"
     printf "\n"
     printf "[admin operation]\n"
         printf "%-25s: %-50s\n" "status" "Check status of data service and environment"
@@ -405,7 +406,7 @@ elif [ "${service:0:4}" = "mask" ]; then
 	    start_hadoop
 	fi
 	if [ "${service:5:1}" == "1" ]; then
-	    start_zeppelin
+	    start_zookeeper
 	fi	
 	if [ "${service:6:1}" == "1" ]; then
 	    start_confluent
@@ -420,13 +421,13 @@ elif [ "${service:0:4}" = "mask" ]; then
 	    start_hbase
 	fi
 	if [ "${service:10:1}" == "1" ]; then
-	    start_zookeeper
+	    start_zeppelin
 	fi
 
 	if [ "${service}" = "mask" ]; then
 	    echo "[ERROR] No proper mask is specified."
 	    echo "[INFO] Labops start masking setting uses 1 to enable and 0 to disable the service to start"
-	    echo "[INFO] 7 bit masking represents service like hadoop (hive), zeppelin, kafka (schema registry), flink, spark, hbase, zookeeper"
+	    echo "[INFO] 7 bit masking represents service,  hadoop (hive)|zookeeper|kafka (schema registry, connect)|flink|spark|hbase|zeppelin"
 	    echo "[INFO] For example, 'dfops start mask1001000' only start hadoop (hive) and spark service"
 	fi
 else
