@@ -109,7 +109,7 @@ if [ -h ${DF_APP_DEP}/confluent ]; then
 	fi
 	echo "[INFO] Started [Schema Registry]"
 	
-	for jar in ${DF_APP_LIB}/*dependencies.jar; do
+	for jar in ${DF_APP_LIB}/*.jar; do
 	  CLASSPATH=${CLASSPATH}:${jar}
 	done
 	export CLASSPATH
