@@ -57,6 +57,7 @@ DF_APP_LIB=$DF_APP_DEP/lib
 
 KAFKA_DAEMON_NAME=SupportedKafka
 KAFKA_CONNECT_DAEMON_NAME=connectdistributed
+KAFKA_KSQL_DAEMON_NAME=KsqlServerMain
 ZOO_KEEPER_DAEMON_NAME=QuorumPeerMain
 SCHEMA_REGISTRY_DAEMON_NAME=schemaregistrymain
 FLINK_JM_DAEMON_NAME=JobManager
@@ -121,8 +122,17 @@ if [ -h ${DF_APP_DEP}/confluent ]; then
 	else
 		echo "[WARN] Found Kafka Connect daemon running. Please [stop] or [restart] it."
 	fi
-
 	echo "[INFO] Started [Apache Kafka Connect]"
+
+	sid=$(getSID ${KAFKA_KSQL_DAEMON_NAME})
+	if [ -z "${sid}" ]; then
+		ksql-server-start ${DF_APP_CONFIG}/ksql-server.properties 1> ${DF_APP_LOG}/ksql.log 2> ${DF_APP_LOG}/ksql.log &
+		sleep 3
+	else
+		echo "[WARN] Found Kafka KQL daemon running. Please [stop] or [restart] it."
+	fi
+
+	echo "[INFO] Started [Apache Kafka KSQL]"
 else
 	echo "[WARN] Confluent Platform Not Found"
 fi
@@ -481,6 +491,7 @@ status_all () {
     status ${ZOO_KEEPER_DAEMON_NAME} ZooKeeper
     status ${KAFKA_DAEMON_NAME} Kafka
     status ${KAFKA_CONNECT_DAEMON_NAME} Kafka_Connect
+    status ${KAFKA_KSQL_DAEMON_NAME} Kafka_KSQL
     status ${SCHEMA_REGISTRY_DAEMON_NAME} Schema_Registry
     status ${FLINK_JM_DAEMON_NAME} Flink_JobMgr
     status ${FLINK_TM_DAEMON_NAME} Flink_TaskMgr
