@@ -20,8 +20,8 @@ This distribution is compatible with [HDP 2.6.4](https://docs.hortonworks.com/HD
 1. If you prefer to install specific configuration from [branch](https://github.com/datafibers/lab_env/branches), ```git checkout <branch_name>```
 1. If you prefer to customize install config, you can modify [conf/install_config.sh](https://github.com/datafibers/lab_env/blob/master/config/install_config.sh) or [install_version.sh](https://github.com/datafibers/lab_env/blob/master/config/install_version.sh) or [this section](https://github.com/datafibers/lab_env/blob/master/README.md#customization).
 1. To install ```cd lab_env && vagrant up```
-1. After installed, you'll need to run ```ops format``` to format hadoop for the very first time.
-1. To update ```cd lan_env && git pull && vagrant provision```
+1. After installed, you'll need to run ```ops format``` to format hadoop only for the first time.
+1. To update the default settings, use command ```cd lab_env && git pull && vagrant provision```
 
 ## Operation Command Reference (Run inside VM)
 * Enter ```ops``` to get full command help
