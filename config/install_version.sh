@@ -65,7 +65,7 @@ file_name_hbase=hbase-1.2.6.tar.gz
 dl_link_hbase=${apache_root_site}/hbase/1.2.6.1/hbase-1.2.6.1-bin.tar.gz
 
 file_name_phoenix=phoenix-4.13.1.tar.gz
-dl_link_phoenix=${apache_root_site}/apache-phoenix-4.14.0-HBase-1.2/bin/apache-phoenix-4.14.0-HBase-1.2-bin.tar.gz
+dl_link_phoenix=${apache_root_site}/phoenix/apache-phoenix-4.14.0-HBase-1.2/bin/apache-phoenix-4.14.0-HBase-1.2-bin.tar.gz
 
 file_name_livy=livy-0.5.0-incubating.zip
 dl_link_livy=${apache_root_site}/incubator/livy/0.5.0-incubating/livy-0.5.0-incubating-bin.zip
