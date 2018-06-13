@@ -62,7 +62,7 @@ dl_link_spark=${apache_root_site}/spark/spark-2.2.0/spark-2.2.0-bin-hadoop2.7.tg
 #dl_link_spark=${apache_root_site}/spark/spark-2.3.0/spark-2.3.0-bin-hadoop2.7.tgz
 
 file_name_hbase=hbase-1.2.6.tar.gz
-dl_link_hbase=${apache_root_site}/hbase/stable/hbase-1.2.6-bin.tar.gz
+dl_link_hbase=${apache_root_site}/hbase/1.2.6.1/hbase-1.2.6.1-bin.tar.gz
 
 file_name_phoenix=phoenix-4.13.1.tar.gz
 dl_link_phoenix=${apache_root_site}/phoenix/apache-phoenix-4.13.1-HBase-1.2/bin/apache-phoenix-4.13.1-HBase-1.2-bin.tar.gz
