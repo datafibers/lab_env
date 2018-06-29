@@ -51,8 +51,9 @@ dl_link_flink=${apache_root_site}/flink/flink-1.5.0/flink-1.5.0-bin-hadoop27-sca
 file_name_elastic=elastic-2.3.4.tar.gz
 dl_link_elastic=https://download.elastic.co/elasticsearch/release/org/elasticsearch/distribution/tar/elasticsearch/2.3.4/elasticsearch-2.3.4.tar.gz
 
-file_name_zeppelin=zeppelin-0.7.3.tgz
-dl_link_zeppelin=${apache_root_site}/zeppelin/zeppelin-0.7.3/zeppelin-0.7.3-bin-all.tgz
+file_name_zeppelin=zeppelin-0.8.0.tgz
+#dl_link_zeppelin=${apache_root_site}/zeppelin/zeppelin-0.7.3/zeppelin-0.7.3-bin-all.tgz
+dl_link_zeppelin=${apache_root_site}/zeppelin/zeppelin-0.8.0/zeppelin-0.8.0-bin-all.tgz
 
 file_name_grafana=grafana-5.1.3.tar.gz
 dl_link_grafana=https://s3-us-west-2.amazonaws.com/grafana-releases/release/grafana-5.1.3.linux-x64.tar.gz 
