@@ -46,7 +46,8 @@ file_name_confluent=confluent-4.1.1.tar.gz
 dl_link_confluent=http://packages.confluent.io/archive/4.1/confluent-oss-4.1.1-2.11.tar.gz
 
 file_name_flink=flink-1.5.0.tgz
-dl_link_flink=${apache_root_site}/flink/flink-1.5.0/flink-1.5.0-bin-hadoop27-scala_2.11.tgz
+#dl_link_flink=${apache_root_site}/flink/flink-1.5.0/flink-1.5.0-bin-hadoop27-scala_2.11.tgz
+dl_link_flink=https://archive.apache.org/dist/flink/flink-1.5.0/flink-1.5.0-bin-hadoop27-scala_2.11.tgz
 
 file_name_elastic=elastic-2.3.4.tar.gz
 dl_link_elastic=https://download.elastic.co/elasticsearch/release/org/elasticsearch/distribution/tar/elasticsearch/2.3.4/elasticsearch-2.3.4.tar.gz
