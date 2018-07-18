@@ -24,8 +24,8 @@ while : ; do
 done
 
 #software repository links
-jdk_version=171
-java_file_name=jdk-8u171-linux-x64.tar.gz
+jdk_version=181
+java_file_name=jdk-8u181-linux-x64.tar.gz
 dl_link_java=http://download.oracle.com/otn-pub/java/jdk/8u181-b13/96a7b8442fe848ef90c96a2fad6ed6d1/jdk-8u181-linux-x64.tar.gz
 
 file_name_hadoop=hadoop-2.7.6.tar.gz
@@ -66,7 +66,7 @@ dl_link_spark=${apache_root_site}/spark/spark-2.2.2/spark-2.2.2-bin-hadoop2.7.tg
 file_name_hbase=hbase-1.2.6.tar.gz
 dl_link_hbase=${apache_root_site}/hbase/1.2.6.1/hbase-1.2.6.1-bin.tar.gz
 
-file_name_phoenix=phoenix-4.13.1.tar.gz
+file_name_phoenix=phoenix-4.14.0.tar.gz
 dl_link_phoenix=${apache_root_site}/phoenix/apache-phoenix-4.14.0-HBase-1.2/bin/apache-phoenix-4.14.0-HBase-1.2-bin.tar.gz
 
 file_name_livy=livy-0.5.0-incubating.zip
