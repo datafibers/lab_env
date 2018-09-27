@@ -142,25 +142,26 @@ stop_confluent () {
 if [ -h ${DF_APP_DEP}/confluent ]; then
 	echo "[INFO] Shutdown [Schema Registry]"
 	schema-registry-stop ${DF_APP_CONFIG}/schema-registry.properties 1> ${DF_APP_LOG}/schema-registry.log 2> ${DF_APP_LOG}/schema-registry.log &
-	echo "[INFO] Shutdown [Apache Kafka SQL]"
+	echo "[INFO] Shutdown [KSQL Server]"
 	ksql-server-stop ${DF_APP_CONFIG}/server.properties 1> ${DF_APP_LOG}/ksql.log 2> ${DF_APP_LOG}/ksql.log &
 	echo "[INFO] Shutdown [Apache Kafka Server]"
 	kafka-server-stop ${DF_APP_CONFIG}/server.properties 1> ${DF_APP_LOG}/kafka.log 2> ${DF_APP_LOG}/kafka.log &
 	sleep 15
 	sid=$(getSID ${KAFKA_DAEMON_NAME})
 	if [ ! -z "${sid}" ]; then
-    	kill -9 ${sid}
-	echo "[WARN] Kafka PID is killed after 15 sec. time out."
+    		kill -9 ${sid}
+		echo "[WARN] Kafka PID is killed after 15 sec. time out."
+	fi	
 	sid=$(getSID ${KAFKA_KSQL_DAEMON_NAME})
 	if [ ! -z "${sid}" ]; then
-    	kill -9 ${sid}
-	echo "[WARN] KSQL PID is killed after 15 sec. time out." 
-    fi
-	echo "[INFO] Shutdown [Apache Kafka Connect]"
+    		kill -9 ${sid}
+		echo "[WARN] KSQL PID is killed after 15 sec. time out." 
+    	fi
         sid=$(getSID ${KAFKA_CONNECT_DAEMON_NAME})
 	if [ ! -z "${sid}" ]; then
-    	kill -9 ${sid}
-    fi
+    		kill -9 ${sid}
+		echo "[INFO] Shutdown [Apache Kafka Connect]"
+    	fi
 else
 	echo "[WARN] Confluent Not Found"
 fi
