@@ -143,7 +143,7 @@ if [ -h ${DF_APP_DEP}/confluent ]; then
 	echo "[INFO] Shutdown [Schema Registry]"
 	schema-registry-stop ${DF_APP_CONFIG}/schema-registry.properties 1> ${DF_APP_LOG}/schema-registry.log 2> ${DF_APP_LOG}/schema-registry.log &
 	echo "[INFO] Shutdown [KSQL Server]"
-	ksql-server-stop ${DF_APP_CONFIG}/server.properties 1> ${DF_APP_LOG}/ksql.log 2> ${DF_APP_LOG}/ksql.log &
+	ksql-server-stop ${DF_APP_CONFIG}/ksql-server.properties 1> ${DF_APP_LOG}/ksql.log 2> ${DF_APP_LOG}/ksql.log &
 	echo "[INFO] Shutdown [Apache Kafka Server]"
 	kafka-server-stop ${DF_APP_CONFIG}/server.properties 1> ${DF_APP_LOG}/kafka.log 2> ${DF_APP_LOG}/kafka.log &
 	sleep 15
