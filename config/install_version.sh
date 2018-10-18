@@ -24,9 +24,9 @@ while : ; do
 done
 
 #software repository links
-jdk_version=181
+jdk_version=191
 java_file_name=jdk-8u181-linux-x64.tar.gz
-dl_link_java=http://download.oracle.com/otn-pub/java/jdk/8u181-b13/96a7b8442fe848ef90c96a2fad6ed6d1/jdk-8u181-linux-x64.tar.gz
+dl_link_java=http://download.oracle.com/otn-pub/java/jdk/8u191-b12/2787e4a523244c269598db4e85c51e0c/jdk-8u191-linux-x64.tar.gz
 
 file_name_hadoop=hadoop-2.7.6.tar.gz
 dl_link_hadoop=${apache_root_site}/hadoop/common/hadoop-2.7.6/hadoop-2.7.6.tar.gz
