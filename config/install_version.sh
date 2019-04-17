@@ -26,7 +26,7 @@ done
 #software repository links
 jdk_version=211
 java_file_name=jdk-8u211-linux-x64.tar.gz
-dl_link_java=https://github.com/datafibers/lab_env/releases/download/0.1/jdk-8u211-linux-x64.tar.gz
+dl_link_java=http://github.com/datafibers/lab_env/releases/download/0.1/jdk-8u211-linux-x64.tar.gz
 
 file_name_hadoop=hadoop-2.7.6.tar.gz
 dl_link_hadoop=${apache_root_site}/hadoop/common/hadoop-2.7.6/hadoop-2.7.6.tar.gz
