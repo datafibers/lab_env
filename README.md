@@ -9,7 +9,7 @@ This distribution is compatible with [HDP 2.6.4](https://docs.hortonworks.com/HD
 | ------------- |-----------------| ---------------|---------|
 | hadoop-2.7.6  | flink-1.5.0     | grafana-5.1.3  | git     |
 | hive-1.2.2    | spark-2.3.3     | zeppelin-0.8.1 | mysql   |
-| hive-2.3.5    | confluent-4.1.1 |                | maven   |
+| hive-2.3.6    | confluent-4.1.1 |                | maven   |
 | hbase-1.3.5   |                 |                | dos2unix|
 | phoenix-4.13.2|                 |                | aria2   |
 
