@@ -445,7 +445,7 @@ elif [ "${service:0:4}" = "mask" ]; then
 	    echo "[ERROR] No proper mask is specified."
 	    echo "[INFO] Labops start masking setting uses 1 to enable and 0 to disable the service to start"
 	    echo "[INFO] 7 bit masking represents service,  hadoop (hive)|zookeeper|kafka (schema registry, connect)|flink|spark|hbase|zeppelin"
-	    echo "[INFO] For example, 'dfops start mask1001000' only start hadoop (hive) and spark service"
+	    echo "[INFO] For example, 'dfops start mask1001000' only start hadoop (hive) and flink service"
 	fi
 else
 	echo "[ERROR] No service will start because of wrong command."
