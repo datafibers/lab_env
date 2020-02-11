@@ -65,8 +65,8 @@ dl_link_spark=${apache_root_site}/spark/spark-2.3.4/spark-2.3.4-bin-hadoop2.7.tg
 file_name_hbase=hbase-1.3.6.tar.gz
 dl_link_hbase=${apache_root_site}/hbase/hbase-1.3.6/hbase-1.3.6-bin.tar.gz
 
-file_name_phoenix=phoenix-4.14.2.tar.gz
-dl_link_phoenix=${apache_root_site}/phoenix/apache-phoenix-4.14.2-HBase-1.3/bin/apache-phoenix-4.14.2-HBase-1.3-bin.tar.gz
+file_name_phoenix=phoenix-4.14.3.tar.gz
+dl_link_phoenix=${apache_root_site}/phoenix/apache-phoenix-4.14.3-HBase-1.3/bin/apache-phoenix-4.14.2-HBase-1.3-bin.tar.gz
 
 file_name_livy=livy-0.5.0-incubating.zip
 dl_link_livy=${apache_root_site}/incubator/livy/0.5.0-incubating/livy-0.5.0-incubating-bin.zip
