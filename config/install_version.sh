@@ -59,8 +59,8 @@ dl_link_zeppelin=${apache_root_site}/zeppelin/zeppelin-0.8.2/zeppelin-0.8.2-bin-
 file_name_grafana=grafana-5.1.3.tar.gz
 dl_link_grafana=https://s3-us-west-2.amazonaws.com/grafana-releases/release/grafana-5.1.3.linux-x64.tar.gz 
 
-file_name_spark=spark-2.4.7.tgz
-dl_link_spark=${apache_root_site}/spark/spark-2.4.7/spark-2.4.7-bin-hadoop2.7.tgz
+file_name_spark=spark-2.4.8.tgz
+dl_link_spark=${apache_root_site}/spark/spark-2.4.8/spark-2.4.8-bin-hadoop2.7.tgz
 
 file_name_hbase=hbase-2.3.5.tar.gz
 dl_link_hbase=${apache_root_site}/hbase/2.3.5/hbase-2.3.5-bin.tar.gz
