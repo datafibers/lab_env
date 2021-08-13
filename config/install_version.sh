@@ -62,8 +62,8 @@ dl_link_grafana=https://s3-us-west-2.amazonaws.com/grafana-releases/release/graf
 file_name_spark=spark-2.4.8.tgz
 dl_link_spark=${apache_root_site}/spark/spark-2.4.8/spark-2.4.8-bin-hadoop2.7.tgz
 
-file_name_hbase=hbase-2.3.5.tar.gz
-dl_link_hbase=${apache_root_site}/hbase/2.3.5/hbase-2.3.5-bin.tar.gz
+file_name_hbase=hbase-2.3.6.tar.gz
+dl_link_hbase=${apache_root_site}/hbase/2.3.6/hbase-2.3.6-bin.tar.gz
 
 file_name_phoenix=phoenix-5.0.0.tar.gz
 dl_link_phoenix=${apache_root_site}/phoenix/apache-phoenix-5.0.0-HBase-2.0/bin/apache-phoenix-5.0.0-HBase-2.0-bin.tar.gz 
